@@ -36,6 +36,7 @@ int main(int argc, char *argv[]) {
 		(*bg)->init();
 		int i = bg - bg_removes.begin();
 		(*bg)->show_crop(i);
+		(*bg)->save_crop(i);
 	}
 
 	cv::waitKey(0);

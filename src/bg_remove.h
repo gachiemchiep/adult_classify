@@ -30,6 +30,7 @@
 #include <vector>
 #include <cmath>
 #include <math.h>
+#include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>
 #include <opencv2/opencv.hpp>
 

@@ -26,6 +26,14 @@ void bg_remove::show_crop(int i) {
 
 void bg_remove::save_crop(int i) {
 	std::string method = v_methods[i];
+	boost::filesystem::path img_pth(m_img_path);
+	std::string crop_name =
+			img_pth.stem().string()
+			+ "_" + method
+			+ img_pth.extension().string();
+	boost::replace_all(m_img_path, img_pth.filename().string(), crop_name);
+	std::cerr << m_img_path << "\n";
+//	cv::imwrite(m_crop_mat, "where?");
 }
 
 bool bg_remove::is_valid_img() {
@@ -52,7 +60,7 @@ bool bg_remove::is_valid_method() {
 }
 
 void bg_remove::init() {
-	if (is_valid_img() && is_valid_method()) {
+	if (is_valid_img()) {
 		std::cerr << "Running \n";
 
 	} else {
@@ -234,24 +242,29 @@ bool hsi::is_skin_pixel(cv::Vec3b bgr) {
 
 	float min = std::min(r_norm, g_norm);
 	min = std::min(min, b_norm);
-	float s = 1 - 3*min;
-	float i = (r + g + b)/(3 *255);
+	float s = 1 - 3 * min;
+	float i = (r + g + b) / (3 * 255);
 	float h = 0.0;
-	h = std::acos((0.5*(2*r_norm-g_norm-b_norm)) / std::sqrt(std::pow(r_norm-g_norm,2) + (r_norm - b_norm) * (g_norm - b_norm)));
+	h = std::acos(
+			(0.5 * (2 * r_norm - g_norm - b_norm))
+					/ std::sqrt(
+							std::pow(r_norm - g_norm, 2)
+									+ (r_norm - b_norm) * (g_norm - b_norm)));
 	if (b_norm > g_norm) {
-		h = 2*M_PI - h; //h Pi-2Pi
+		h = 2 * M_PI - h; //h Pi-2Pi
 	} else {
 		// h: 0-Pi
 	}
 
 	// h:0~360, s:0~100, i:0~255
-	h = h*180/M_PI;
+	h = h * 180 / M_PI;
 	s = s * 100;
 	i = i * 255;
 
-	if (( i > 40) && (s > 13) && (s < 110) && (h > 0) && (h < 28)) {
+	if ((i > 40) && (s > 13) && (s < 110) && (h > 0) && (h < 28)) {
 		return true;
-	} else if (( i > 40) && (s > 13) && (s < 75) && (((h > 309) && (h < 331)) || ((h > 332) && (h < 360))) ){
+	} else if ((i > 40) && (s > 13) && (s < 75)
+			&& (((h > 309) && (h < 331)) || ((h > 332) && (h < 360)))) {
 		return true;
 	}
 //	else if ((h > 332) && (h < 360)) {
