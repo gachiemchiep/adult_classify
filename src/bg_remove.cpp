@@ -21,7 +21,11 @@ void bg_remove::set_img(std::string &img) {
 }
 
 void bg_remove::show_crop(int i) {
-	cv::imshow(v_methods[i], m_crop_mat);
+	cv::imshow(v_methods[i] + "_crop", m_crop_mat);
+}
+
+void bg_remove::run() {
+	remove_noise();
 }
 
 void bg_remove::save_crop(int i) {
@@ -37,22 +41,19 @@ void bg_remove::save_crop(int i) {
 }
 
 void bg_remove::show_bin(int i) {
-	remove_noise();
-
-	cv::imshow(v_methods[i], m_crop_bin);
+	cv::imshow(v_methods[i] + "_bin", m_crop_bin);
 }
 
 void bg_remove::remove_noise() {
 	cv::cvtColor(m_crop_mat, m_crop_bin, CV_BGR2GRAY);
-	cv::threshold(m_crop_bin, m_crop_bin, 100, 255, cv::THRESH_BINARY);
+	cv::threshold(m_crop_bin, m_crop_bin, 0, 255, cv::THRESH_BINARY);
 	// divide image into 16x16 non-overlapping block
 	// if block has more than 50% skin , then that block is skin block
 	find_skin_block();
 	//closing mornopoly to connect skin blocks
 	connect_skin_block();
-	// find largest ractangle and remoev the others
+	// find largest ractangle and remove the others
 	find_largest_skin_block();
-	// finally crop mat again to find ROI
 }
 
 void bg_remove::find_skin_block() {
@@ -61,27 +62,22 @@ void bg_remove::find_skin_block() {
 	int new_width = (width / BLOCK_SIZE.width + 1) * BLOCK_SIZE.width;
 	int new_height = (height / BLOCK_SIZE.height + 1) * BLOCK_SIZE.height;
 
-	printf("old: %d, %d, new: %d, %d\n", height, width, new_height, new_width);
 	cv::resize(m_crop_bin, m_crop_bin, cv::Size(new_width, new_height));
+	cv::resize(m_img_mat, m_img_mat, cv::Size(new_width, new_height));
 
-	cv::Mat m_block_empty = cv::Mat::zeros(BLOCK_SIZE.width, BLOCK_SIZE.height, CV_8UC1);
+	cv::Mat m_block_empty = cv::Mat::zeros(BLOCK_SIZE.width, BLOCK_SIZE.height,
+	CV_8UC1);
 
 	std::vector<cv::Rect> skin_blocks;
 	for (int y = 0; y < (new_height / BLOCK_SIZE.height); y++) {
 		for (int x = 0; x < (new_width / BLOCK_SIZE.width); x++) {
 			cv::Rect tmp_rect(x * BLOCK_SIZE.width, y * BLOCK_SIZE.height,
 					BLOCK_SIZE.width, BLOCK_SIZE.height);
-			if (is_skin_block(tmp_rect, m_crop_bin)) {
-				skin_blocks.push_back(tmp_rect);
-				cv::rectangle(m_img_mat, tmp_rect.tl(), tmp_rect.br(),
-						cv::Scalar(255, 0, 255), 1, 8, 0);
-			} else {
+			if (!is_skin_block(tmp_rect, m_crop_bin)) {
 				m_block_empty.copyTo(m_crop_bin(tmp_rect));
 			}
 		}
 	}
-	imshow("new_size", m_img_mat);
-	imshow("remove non-skin blocks", m_crop_bin);
 }
 
 bool bg_remove::is_skin_block(cv::Rect block_r, cv::Mat &m_crop_bin_fixed) {
@@ -93,7 +89,7 @@ bool bg_remove::is_skin_block(cv::Rect block_r, cv::Mat &m_crop_bin_fixed) {
 			}
 		}
 	}
-	int count_min = (BLOCK_SIZE.width * BLOCK_SIZE.height) / 2;
+	int count_min = (BLOCK_SIZE.width * BLOCK_SIZE.height) / 4;
 	if (count > count_min) {
 		return true;
 	} else {
@@ -102,10 +98,59 @@ bool bg_remove::is_skin_block(cv::Rect block_r, cv::Mat &m_crop_bin_fixed) {
 }
 
 void bg_remove::connect_skin_block() {
-
+	cv::morphologyEx(m_crop_bin, m_crop_bin, cv::MORPH_CLOSE,
+			MORPH_CLOSE_PARAMS);
+	cv::threshold(m_crop_bin, m_crop_bin, 0, 255, cv::THRESH_BINARY);
 }
 
 void bg_remove::find_largest_skin_block() {
+	std::vector<std::vector<cv::Point> > contours;
+	std::vector<cv::Vec4i> hierachy;
+	cv::Mat m_crop_bin_ct;
+	m_crop_bin.copyTo(m_crop_bin_ct);
+	cv::findContours(m_crop_bin_ct, contours, hierachy, CV_RETR_TREE,
+			CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+	// find largest contour, the other is considered as background
+
+	std::vector<cv::Point> largest_contour_poly, contour_poly;
+	cv::Rect largest_rect, tmp_rect;
+	std::vector<cv::Point> largest_contour;
+	double largest_area, tmp_area;
+	if (contours.size() != 0) {
+		largest_contour = contours.at(0);
+		cv::approxPolyDP(cv::Mat(largest_contour), largest_contour_poly, 3,
+						true);
+		largest_rect = cv::boundingRect(cv::Mat(largest_contour_poly));
+		largest_area = largest_rect.area();
+		for (int i = 1; i < contours.size(); i++) {
+			cv::approxPolyDP(cv::Mat(contours.at(i)), contour_poly, 3,
+									true);
+			tmp_rect = cv::boundingRect(cv::Mat(contour_poly));
+			tmp_area = tmp_rect.area();
+			if (tmp_area > largest_area) {
+				largest_rect = tmp_rect;
+				largest_area = tmp_area;
+			}
+		}
+
+		m_crop_mat = m_img_mat(largest_rect);
+
+		// crop binary image
+		for (int h = 0; h < m_crop_bin.size().height; h++) {
+			for (int w = 0; w < m_crop_bin.size().width; w++) {
+				if (((h < largest_rect.y)
+						|| (h > (largest_rect.y + largest_rect.height)))
+						&& ((w < largest_rect.x)
+								|| (w > (largest_rect.x + largest_rect.width)))) {
+					m_crop_bin.at<uchar>(h, w) = 0;
+				}
+			}
+		}
+	} else {
+		// contour is not found
+		std::cerr << m_img_path << " is considered as background image \n";
+		std::cerr << "remove from learning data";
+	}
 
 }
 
@@ -233,6 +278,7 @@ bool rgb_norm::is_skin_pixel(cv::Vec3b bgr) {
 }
 
 void hsv::init() {
+	std::cerr << "init \n";
 	if (is_valid_img()) {
 		cv::cvtColor(m_crop_mat, m_crop_mat, CV_BGR2HSV);
 		for (int h = 0; h < m_crop_mat.rows; h++) {

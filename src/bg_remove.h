@@ -34,7 +34,9 @@
 #include <boost/filesystem.hpp>
 #include <opencv2/opencv.hpp>
 
-const cv::Size BLOCK_SIZE(16, 16);
+const cv::Size BLOCK_SIZE(8, 8);
+const cv::Mat MORPH_CLOSE_PARAMS(
+		cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3), cv::Point(1, 1)));
 
 class bg_remove {
 public:
@@ -43,12 +45,14 @@ public:
 	void set_img(std::string &img_path);
 	virtual void init() = 0;
 	void show_crop(int i);
+	void run();
 	void save_crop(int i);
 	void show_bin(int i);
 protected:
 	std::string m_img_path;
 	std::string m_method = "HSI";
-	std::vector<std::string> v_methods {"RGB", "YCrCb", "HSV", "HLS", "RGB_norm", "HSI"};
+	std::vector<std::string> v_methods { "RGB", "YCrCb", "HSV", "HLS",
+			"RGB_norm", "HSI" };
 	cv::Mat m_img_mat;
 	cv::Mat m_crop_mat;
 	cv::Mat m_crop_bin;

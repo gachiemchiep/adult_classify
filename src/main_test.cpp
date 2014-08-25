@@ -23,19 +23,20 @@ int main(int argc, char *argv[]) {
 	std::string img_loc = std::string(argv[1]);
 
 	std::vector<bg_remove*> bg_removes;
-	bg_removes.push_back(new rgb());
+//	bg_removes.push_back(new rgb());
 //	bg_removes.push_back(new ycrcb());
 //	bg_removes.push_back(new hsv());
 //	bg_removes.push_back(new hls());
 //	bg_removes.push_back(new rgb_norm());
-//	bg_removes.push_back(new hsi());
+	bg_removes.push_back(new hsi());
 
 	for (std::vector<bg_remove*>::iterator bg = bg_removes.begin();
 			bg != bg_removes.end(); ++bg) {
 		(*bg)->set_img(img_loc);
 		(*bg)->init();
+		(*bg)->run();
 		int i = bg - bg_removes.begin();
-//		(*bg)->show_crop(i);
+		(*bg)->show_crop(i);
 		(*bg)->show_bin(i);
 //		(*bg)->save_crop(i);
 	}
