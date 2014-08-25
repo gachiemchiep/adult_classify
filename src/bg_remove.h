@@ -34,6 +34,8 @@
 #include <boost/filesystem.hpp>
 #include <opencv2/opencv.hpp>
 
+const cv::Size BLOCK_SIZE(16, 16);
+
 class bg_remove {
 public:
 	bg_remove();
@@ -42,15 +44,22 @@ public:
 	virtual void init() = 0;
 	void show_crop(int i);
 	void save_crop(int i);
+	void show_bin(int i);
 protected:
 	std::string m_img_path;
 	std::string m_method = "HSI";
 	std::vector<std::string> v_methods {"RGB", "YCrCb", "HSV", "HLS", "RGB_norm", "HSI"};
 	cv::Mat m_img_mat;
 	cv::Mat m_crop_mat;
+	cv::Mat m_crop_bin;
 	bool is_valid_img();
 private:
 	bool is_valid_method();
+	void remove_noise(); // change m_crop_mat into m_crop_bin then remove noise
+	void find_skin_block(); // divide crop bin into 32x32 and find skin contains block
+	bool is_skin_block(cv::Rect block_r, cv::Mat &m_cop_bin_fixed);
+	void connect_skin_block(); // combine skin blocks using "closing" transform
+	void find_largest_skin_block(); // find largest skin block after connecting block using closing
 	void save_crop();
 };
 

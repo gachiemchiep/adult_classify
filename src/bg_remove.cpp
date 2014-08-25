@@ -27,15 +27,86 @@ void bg_remove::show_crop(int i) {
 void bg_remove::save_crop(int i) {
 	std::string method = v_methods[i];
 	boost::filesystem::path img_pth(m_img_path);
-	std::string crop_name =
-			img_pth.stem().string()
-			+ "_" + method
+	std::string crop_name = img_pth.stem().string() + "_" + method
 			+ img_pth.extension().string();
 	boost::replace_all(m_img_path, img_pth.filename().string(), crop_name);
 	std::cerr << m_img_path << "\n";
 	// TODO: save somewhere,
 	// make a command list to run
 //	cv::imwrite(m_crop_mat, "where?");
+}
+
+void bg_remove::show_bin(int i) {
+	remove_noise();
+
+	cv::imshow(v_methods[i], m_crop_bin);
+}
+
+void bg_remove::remove_noise() {
+	cv::cvtColor(m_crop_mat, m_crop_bin, CV_BGR2GRAY);
+	cv::threshold(m_crop_bin, m_crop_bin, 100, 255, cv::THRESH_BINARY);
+	// divide image into 16x16 non-overlapping block
+	// if block has more than 50% skin , then that block is skin block
+	find_skin_block();
+	//closing mornopoly to connect skin blocks
+	connect_skin_block();
+	// find largest ractangle and remoev the others
+	find_largest_skin_block();
+	// finally crop mat again to find ROI
+}
+
+void bg_remove::find_skin_block() {
+	int width = m_crop_bin.cols;
+	int height = m_crop_bin.rows;
+	int new_width = (width / BLOCK_SIZE.width + 1) * BLOCK_SIZE.width;
+	int new_height = (height / BLOCK_SIZE.height + 1) * BLOCK_SIZE.height;
+
+	printf("old: %d, %d, new: %d, %d\n", height, width, new_height, new_width);
+	cv::resize(m_crop_bin, m_crop_bin, cv::Size(new_width, new_height));
+
+	cv::Mat m_block_empty = cv::Mat::zeros(BLOCK_SIZE.width, BLOCK_SIZE.height, CV_8UC1);
+
+	std::vector<cv::Rect> skin_blocks;
+	for (int y = 0; y < (new_height / BLOCK_SIZE.height); y++) {
+		for (int x = 0; x < (new_width / BLOCK_SIZE.width); x++) {
+			cv::Rect tmp_rect(x * BLOCK_SIZE.width, y * BLOCK_SIZE.height,
+					BLOCK_SIZE.width, BLOCK_SIZE.height);
+			if (is_skin_block(tmp_rect, m_crop_bin)) {
+				skin_blocks.push_back(tmp_rect);
+				cv::rectangle(m_img_mat, tmp_rect.tl(), tmp_rect.br(),
+						cv::Scalar(255, 0, 255), 1, 8, 0);
+			} else {
+				m_block_empty.copyTo(m_crop_bin(tmp_rect));
+			}
+		}
+	}
+	imshow("new_size", m_img_mat);
+	imshow("remove non-skin blocks", m_crop_bin);
+}
+
+bool bg_remove::is_skin_block(cv::Rect block_r, cv::Mat &m_crop_bin_fixed) {
+	int count = 0;
+	for (int h = block_r.y; h < (block_r.y + block_r.height); h++) {
+		for (int w = block_r.x; w < (block_r.x + block_r.width); w++) {
+			if (m_crop_bin_fixed.at<uchar>(h, w) == 255) {
+				count++;
+			}
+		}
+	}
+	int count_min = (BLOCK_SIZE.width * BLOCK_SIZE.height) / 2;
+	if (count > count_min) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+void bg_remove::connect_skin_block() {
+
+}
+
+void bg_remove::find_largest_skin_block() {
+
 }
 
 bool bg_remove::is_valid_img() {
