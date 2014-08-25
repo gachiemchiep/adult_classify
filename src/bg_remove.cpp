@@ -29,15 +29,27 @@ void bg_remove::run() {
 }
 
 void bg_remove::save_crop(int i) {
-	std::string method = v_methods[i];
-	boost::filesystem::path img_pth(m_img_path);
-	std::string crop_name = img_pth.stem().string() + "_" + method
-			+ img_pth.extension().string();
-	boost::replace_all(m_img_path, img_pth.filename().string(), crop_name);
-	std::cerr << m_img_path << "\n";
-	// TODO: save somewhere,
-	// make a command list to run
-//	cv::imwrite(m_crop_mat, "where?");
+	if (!is_background_img()) {
+		// save somewhere
+		std::string method = v_methods[i];
+		boost::filesystem::path img_pth(m_img_path);
+		std::string crop_name = img_pth.stem().string() + "_" + method
+				+ img_pth.extension().string();
+		boost::replace_all(m_img_path, img_pth.filename().string(), crop_name);
+		std::cerr << m_img_path << "\n";
+		cv::imwrite(m_img_path, m_crop_mat);
+	}
+}
+
+bool bg_remove::is_background_img() {
+	int crop_area = m_crop_mat.size().area();
+	int img_area = m_img_mat.size().area();
+	float rate = float(crop_area) / img_area;
+	if ( rate < MIN_OVERLAP) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 void bg_remove::show_bin(int i) {
@@ -278,7 +290,6 @@ bool rgb_norm::is_skin_pixel(cv::Vec3b bgr) {
 }
 
 void hsv::init() {
-	std::cerr << "init \n";
 	if (is_valid_img()) {
 		cv::cvtColor(m_crop_mat, m_crop_mat, CV_BGR2HSV);
 		for (int h = 0; h < m_crop_mat.rows; h++) {

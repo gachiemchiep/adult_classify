@@ -37,6 +37,7 @@
 const cv::Size BLOCK_SIZE(8, 8);
 const cv::Mat MORPH_CLOSE_PARAMS(
 		cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3), cv::Point(1, 1)));
+const float MIN_OVERLAP = 0.25;
 
 class bg_remove {
 public:
@@ -61,10 +62,11 @@ private:
 	bool is_valid_method();
 	void remove_noise(); // change m_crop_mat into m_crop_bin then remove noise
 	void find_skin_block(); // divide crop bin into 32x32 and find skin contains block
-	bool is_skin_block(cv::Rect block_r, cv::Mat &m_cop_bin_fixed);
+	bool is_skin_block(cv::Rect block_r, cv::Mat &m_cop_bin_fixed); // is that block a skin-block
 	void connect_skin_block(); // combine skin blocks using "closing" transform
 	void find_largest_skin_block(); // find largest skin block after connecting block using closing
 	void save_crop();
+	bool is_background_img(); // check whether input image is background image
 };
 
 #endif /* BG_REMOVE_H_ */
