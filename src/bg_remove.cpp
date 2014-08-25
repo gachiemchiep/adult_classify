@@ -17,6 +17,7 @@ bg_remove::~bg_remove() {
 }
 
 void bg_remove::set_img(std::string &img) {
+	std::cerr << "Input image:" << m_img_path << "\n";
 	m_img_path = img;
 }
 
@@ -36,7 +37,7 @@ void bg_remove::save_crop(int i) {
 		std::string crop_name = img_pth.stem().string() + "_" + method
 				+ img_pth.extension().string();
 		boost::replace_all(m_img_path, img_pth.filename().string(), crop_name);
-		std::cerr << m_img_path << "\n";
+//		std::cerr << m_img_path << "\n";
 		cv::imwrite(m_img_path, m_crop_mat);
 	}
 }
