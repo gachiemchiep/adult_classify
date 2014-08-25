@@ -30,6 +30,8 @@ int main(int argc, char *argv[]) {
 	bg_removes.push_back(new rgb_norm());
 	bg_removes.push_back(new hsi());
 
+	//TODO : move folder to corresponding method's folder
+
 	for (std::vector<bg_remove*>::iterator bg = bg_removes.begin();
 			bg != bg_removes.end(); ++bg) {
 		(*bg)->set_img(img_loc);

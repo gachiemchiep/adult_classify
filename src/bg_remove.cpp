@@ -17,8 +17,8 @@ bg_remove::~bg_remove() {
 }
 
 void bg_remove::set_img(std::string &img) {
-	std::cerr << "Input image:" << m_img_path << "\n";
 	m_img_path = img;
+	std::cerr << "Input image:" << m_img_path << "\n";
 }
 
 void bg_remove::show_crop(int i) {
