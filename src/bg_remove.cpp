@@ -33,6 +33,8 @@ void bg_remove::save_crop(int i) {
 			+ img_pth.extension().string();
 	boost::replace_all(m_img_path, img_pth.filename().string(), crop_name);
 	std::cerr << m_img_path << "\n";
+	// TODO: save somewhere,
+	// make a command list to run
 //	cv::imwrite(m_crop_mat, "where?");
 }
 
