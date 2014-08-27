@@ -45,7 +45,6 @@ with open(argv[2], 'w') as f:
 		
 f.close();		
 
-methods = ["RGB, "];
 	
 			
 	

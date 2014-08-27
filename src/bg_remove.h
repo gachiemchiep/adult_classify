@@ -57,6 +57,7 @@ protected:
 	cv::Mat m_img_mat;
 	cv::Mat m_crop_mat;
 	cv::Mat m_crop_bin;
+	cv::Rect m_roi;
 	bool is_valid_img();
 private:
 	bool is_valid_method();
@@ -66,7 +67,9 @@ private:
 	void connect_skin_block(); // combine skin blocks using "closing" transform
 	void find_largest_skin_block(); // find largest skin block after connecting block using closing
 	void save_crop();
+	cv::Rect analyze_roi(cv::Rect largest_block);
 	bool is_background_img(); // check whether input image is background image
+	void crop_img(cv::Rect &roi); // crop image using roi
 };
 
 #endif /* BG_REMOVE_H_ */

@@ -3,7 +3,6 @@
  *
  *  Created on: Aug 21, 2014
  *      Author: gachiemchiep
- *      test
  */
 
 #include "bg_remove.h"
@@ -31,26 +30,51 @@ void bg_remove::run() {
 }
 
 void bg_remove::save_crop(int i) {
-	if (!is_background_img()) {
-		// save somewhere
-		std::string method = v_methods[i];
-		boost::filesystem::path img_pth(m_img_path);
-		std::string crop_name = img_pth.stem().string() + "_" + method
-				+ img_pth.extension().string();
-		boost::replace_all(m_img_path, img_pth.filename().string(), crop_name);
+	crop_img(m_roi);
+	// save somewhere
+	std::string method = v_methods[i];
+	boost::filesystem::path img_pth(m_img_path);
+	std::string crop_name = img_pth.stem().string() + "_" + method
+			+ img_pth.extension().string();
+	boost::replace_all(m_img_path, img_pth.filename().string(), crop_name);
 //		std::cerr << m_img_path << "\n";
-		cv::imwrite(m_img_path, m_crop_mat);
-	}
+	cv::imwrite(m_img_path, m_crop_mat);
 }
 
 bool bg_remove::is_background_img() {
 	int crop_area = m_crop_mat.size().area();
 	int img_area = m_img_mat.size().area();
 	float rate = float(crop_area) / img_area;
-	if ( rate < MIN_OVERLAP) {
+	if (rate < MIN_OVERLAP) {
 		return true;
 	} else {
 		return false;
+	}
+}
+
+cv::Rect bg_remove::analyze_roi(cv::Rect largest_block) {
+	int area = largest_block.area();
+	if ((area < (m_img_mat.size().area() * MIN_OVERLAP))
+			|| (largest_block.width < 50) || (largest_block.height < 50)) {
+		cv::Rect new_roi = cv::Rect(0, 0, m_img_mat.cols, m_img_mat.rows);
+		return new_roi;
+	} else {
+		return largest_block;
+	}
+}
+
+void bg_remove::crop_img(cv::Rect &roi) {
+	m_crop_mat = m_img_mat(roi);
+	// crop binary image
+	for (int h = 0; h < m_crop_bin.size().height; h++) {
+		for (int w = 0; w < m_crop_bin.size().width; w++) {
+			if (((h < roi.y)
+				|| (h > (roi.y + roi.height)))
+					&& ((w < roi.x)
+						|| (w > (roi.x + roi.width)))) {
+				m_crop_bin.at<uchar>(h, w) = 0;
+			}
+		}
 	}
 }
 
@@ -68,6 +92,7 @@ void bg_remove::remove_noise() {
 	connect_skin_block();
 	// find largest ractangle and remove the others
 	find_largest_skin_block();
+	m_roi = analyze_roi(m_roi);
 }
 
 void bg_remove::find_skin_block() {
@@ -127,43 +152,27 @@ void bg_remove::find_largest_skin_block() {
 	// find largest contour, the other is considered as background
 
 	std::vector<cv::Point> largest_contour_poly, contour_poly;
-	cv::Rect largest_rect, tmp_rect;
+	cv::Rect  tmp_rect;
 	std::vector<cv::Point> largest_contour;
 	double largest_area, tmp_area;
 	if (contours.size() != 0) {
 		largest_contour = contours.at(0);
 		cv::approxPolyDP(cv::Mat(largest_contour), largest_contour_poly, 3,
-						true);
-		largest_rect = cv::boundingRect(cv::Mat(largest_contour_poly));
-		largest_area = largest_rect.area();
+				true);
+		m_roi = cv::boundingRect(cv::Mat(largest_contour_poly));
+		largest_area = m_roi.area();
 		for (int i = 1; i < contours.size(); i++) {
-			cv::approxPolyDP(cv::Mat(contours.at(i)), contour_poly, 3,
-									true);
+			cv::approxPolyDP(cv::Mat(contours.at(i)), contour_poly, 3, true);
 			tmp_rect = cv::boundingRect(cv::Mat(contour_poly));
 			tmp_area = tmp_rect.area();
 			if (tmp_area > largest_area) {
-				largest_rect = tmp_rect;
+				m_roi = tmp_rect;
 				largest_area = tmp_area;
-			}
-		}
-
-		m_crop_mat = m_img_mat(largest_rect);
-
-		// crop binary image
-		for (int h = 0; h < m_crop_bin.size().height; h++) {
-			for (int w = 0; w < m_crop_bin.size().width; w++) {
-				if (((h < largest_rect.y)
-						|| (h > (largest_rect.y + largest_rect.height)))
-						&& ((w < largest_rect.x)
-								|| (w > (largest_rect.x + largest_rect.width)))) {
-					m_crop_bin.at<uchar>(h, w) = 0;
-				}
 			}
 		}
 	} else {
 		// contour is not found
-		std::cerr << m_img_path << " is considered as background image \n";
-		std::cerr << "remove from learning data";
+		std::cerr << "ROI is not found \n" ;
 	}
 
 }
