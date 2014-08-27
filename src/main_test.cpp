@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <stdio.h>
-#include "bg_remove.h"
+#include "feature_extractor.h"
 
 using namespace std;
 using namespace cv;
@@ -21,27 +21,11 @@ int main(int argc, char *argv[]) {
 	}
 
 	std::string img_loc = std::string(argv[1]);
+	feature_extractor fe ;
+	fe.set_img_path(img_loc);
+	fe.set_method("ALL");
+	fe.calculate_feature();
 
-	std::vector<bg_remove*> bg_removes;
-	bg_removes.push_back(new rgb());
-	bg_removes.push_back(new ycrcb());
-	bg_removes.push_back(new hsv());
-	bg_removes.push_back(new hls());
-	bg_removes.push_back(new rgb_norm());
-	bg_removes.push_back(new hsi());
-
-	//TODO : move folder to corresponding method's folder
-
-	for (std::vector<bg_remove*>::iterator bg = bg_removes.begin();
-			bg != bg_removes.end(); ++bg) {
-		(*bg)->set_img(img_loc);
-		(*bg)->init();
-		(*bg)->run();
-		int i = bg - bg_removes.begin();
-//		(*bg)->show_crop(i);
-//		(*bg)->show_bin(i);
-		(*bg)->save_crop(i);
-	}
 	cv::waitKey(0);
 	return 0;
 }

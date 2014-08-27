@@ -7,13 +7,12 @@ import sys
 import os
 import shutil
 from shutil import copytree, ignore_patterns
-import distutils.dir_util.create_tree
 
 argc = len(sys.argv);
 argv = sys.argv;
 
 if (argc != 2):
-	print "Usage : %s full_path" %(argv[0])
+	print "Usage : %s full_path(without / at last or the cript will fail to execute)" %(argv[0])
 	sys.exit();
 
 def list_files(dir, string):
@@ -30,7 +29,7 @@ def ignore_file(dir, files):
 	return [file for file in files if os.path.isfile(os.path.join(dir, file))]
 
 path = argv[1];
-#path = '/home/gachiemchiep/git/adult_classify/imgs/data'
+#path = '/home/gachiemchiep/workspace/adult_classify/imgs/data'
 methods = ["RGB", "YCrCb", "HSV", "HLS", "RGB_norm", "HSI"];
 method_based_names = ["_RGB.jpg", "_YCrCb.jpg", "_HSV.jpg", "_HLS.jpg", "_RGB_norm.jpg", "_HSI.jpg"]
 

@@ -62,17 +62,11 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.1152471746.1747588987" name="rmBackground.cpp" rcbsApplicability="disable" resourcePath="src/rmBackground.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009.376050738">
-						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009.376050738" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009"/>
-						<tool customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.794354959" name="Resource Custom Build Step">
-							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.577097357" name="Resource Custom Build Step Input Type">
-								<additionalInput kind="additionalinputdependency" paths=""/>
-							</inputType>
-							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.572568087" name="Resource Custom Build Step Output Type"/>
-						</tool>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.1152471746.1818825118" name="remove_background.cpp" rcbsApplicability="disable" resourcePath="src/remove_background.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009.1234915315">
+						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009.1234915315" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009"/>
 					</fileInfo>
 					<sourceEntries>
-						<entry excluding="src/rmBackground.cpp|src/main_1.cpp|src/main.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/remove_background.cpp|src/rmBackground.cpp|src/main_1.cpp|src/main.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

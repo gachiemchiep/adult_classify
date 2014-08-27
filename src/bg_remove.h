@@ -68,7 +68,6 @@ private:
 	void find_largest_skin_block(); // find largest skin block after connecting block using closing
 	void save_crop();
 	cv::Rect analyze_roi(cv::Rect largest_block);
-	bool is_background_img(); // check whether input image is background image
 	void crop_img(cv::Rect &roi); // crop image using roi
 };
 

@@ -27,10 +27,11 @@ void bg_remove::show_crop(int i) {
 
 void bg_remove::run() {
 	remove_noise();
+	crop_img(m_roi);
 }
 
 void bg_remove::save_crop(int i) {
-	crop_img(m_roi);
+
 	// save somewhere
 	std::string method = v_methods[i];
 	boost::filesystem::path img_pth(m_img_path);
@@ -39,17 +40,6 @@ void bg_remove::save_crop(int i) {
 	boost::replace_all(m_img_path, img_pth.filename().string(), crop_name);
 //		std::cerr << m_img_path << "\n";
 	cv::imwrite(m_img_path, m_crop_mat);
-}
-
-bool bg_remove::is_background_img() {
-	int crop_area = m_crop_mat.size().area();
-	int img_area = m_img_mat.size().area();
-	float rate = float(crop_area) / img_area;
-	if (rate < MIN_OVERLAP) {
-		return true;
-	} else {
-		return false;
-	}
 }
 
 cv::Rect bg_remove::analyze_roi(cv::Rect largest_block) {
