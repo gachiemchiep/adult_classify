@@ -3,6 +3,7 @@
  *
  *  Created on: Aug 21, 2014
  *      Author: gachiemchiep
+ *      test
  */
 
 #include "bg_remove.h"
