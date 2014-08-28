@@ -49,6 +49,7 @@ public:
 	void run();
 	void save_crop(int i);
 	void show_bin(int i);
+	cv::Mat get_bin(int i);
 protected:
 	std::string m_img_path;
 	std::string m_method = "HSI";
