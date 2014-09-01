@@ -62,11 +62,11 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.1152471746.1818825118" name="remove_background.cpp" rcbsApplicability="disable" resourcePath="src/remove_background.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009.1234915315">
-						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009.1234915315" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009"/>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.1152471746.2101613853" name="extract_feature.cpp" rcbsApplicability="disable" resourcePath="src/extract_feature.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009.1338464288">
+						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009.1338464288" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1976677009"/>
 					</fileInfo>
 					<sourceEntries>
-						<entry excluding="src/remove_background.cpp|src/rmBackground.cpp|src/main_1.cpp|src/main.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/extract_feature.cpp|src/remove_background.cpp|src/rmBackground.cpp|src/main_1.cpp|src/main.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
