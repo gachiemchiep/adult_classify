@@ -34,7 +34,7 @@ const std::vector<std::vector<float> > edge_filters { ver_edge_filter,
 		hor_edge_filter, dia45_edge_filter, dia135_edge_filter, nond_edge_filter };
 const float EDGE_THRES = 50;
 const int ehd_block = 1024; // block number for each sub image, sqrt(1024)= 32
-const int NORM = 4096;
+const int NORM = 512;
 /*
  * Maximum of vector
  */

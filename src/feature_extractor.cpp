@@ -127,7 +127,7 @@ cv::Mat feature_extractor::calculate_scd(cv::Mat &frame) {
 //	std::cerr << frame.size().area() << "\n";
 //	std::cerr << cv::sum(scd) << "\n";
 //	std::cerr << scd;
-	scd = scd / frame.size().area() * 4096;
+	scd = scd / frame.size().area() * NORM;
 	scd.convertTo(scd, CV_16U, 1, 0);
 	return scd;
 }
@@ -358,7 +358,7 @@ cv::Mat feature_extractor::calculate_cd(cv::Mat &frame) {
 	for (int i = 5; i < 21; i++) {
 		cd_descriptor.at<float>(0, i) = compact2[i-5];
 	}
-	// quantized to fixed size 4096 ()
+	// TODO: norm
 	cd_descriptor = cd_descriptor * NORM;
 	cd_descriptor.convertTo(cd_descriptor, CV_16U, 1, 0);
 	return cd_descriptor;
