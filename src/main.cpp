@@ -9,6 +9,7 @@
 #include <boost/program_options.hpp>
 #include "params.h"
 #include "bg_remove.h"
+#include "feature_extractor.h"
 #include <algorithm>
 #include <vector>
 #include <string>
@@ -38,7 +39,7 @@ int main(int argc, char *argv[]) {
 
 	extract_feature_options.add_options()
 		("img_path, p",    value<string>(),    "Image path which is used for extracting feature")
-		("feature_type",    value<string>()->default_value("all"),    "Method for extracting feature")
+		("feature_type",    value<string>()->default_value("all"),    "Method for extracting feature.\nCurrently not usable")
 		("feature_file",    value<string>()->default_value("feature.txt",    "File in which feature will be appended to"));
 	;
 
@@ -120,9 +121,17 @@ int main(int argc, char *argv[]) {
 				std::string feature_file = parsed_values["feature_file"].as<string>();
 				std::cerr <<"Image:" << img_path << " \nFeature type:" << feature_type <<
 						" \nFeature_file:" << feature_file <<"\n";
+
+				//TODO now use only ALL as default
+
+				feature_extractor fe ;
+				fe.set_img_path(img_path);
+				fe.set_method("ALL");
+				fe.calculate_feature();
+				fe.save_result(feature_file);
 			}
 			std::cerr << "Extracting feature finish!!! \n";
-			return 1;
+			return 0;
 		}
 
 		// Execute testing to evaluate classifier's accuracy

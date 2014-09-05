@@ -10,14 +10,14 @@
 
 #include <algorithm>
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <cmath>
 #include <math.h>
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>
 #include <opencv2/opencv.hpp>
-
-const std::vector<std::string> methods { "SCD", "EHD", "CD", "ALL" };
+#include "params.h"
 
 /*
  * ehd feature descriptor's filter
@@ -25,16 +25,6 @@ const std::vector<std::string> methods { "SCD", "EHD", "CD", "ALL" };
  * edges's threshold
  */
 
-const std::vector<float> ver_edge_filter { 1, -1, 1, -1 };
-const std::vector<float> hor_edge_filter { 1, 1, -1, -1 };
-const std::vector<float> dia45_edge_filter { std::sqrt(2), 0, 0, -std::sqrt(2) };
-const std::vector<float> dia135_edge_filter { 0, std::sqrt(2), -std::sqrt(2), 0 };
-const std::vector<float> nond_edge_filter { 2, -2, -2, 2 };
-const std::vector<std::vector<float> > edge_filters { ver_edge_filter,
-		hor_edge_filter, dia45_edge_filter, dia135_edge_filter, nond_edge_filter };
-const float EDGE_THRES = 50;
-const int ehd_block = 1024; // block number for each sub image, sqrt(1024)= 32
-const int NORM = 512;
 /*
  * Maximum of vector
  */
@@ -90,7 +80,9 @@ public:
 	std::string get_method();
 	cv::Mat get_feature();
 	bool is_valid();
-	cv::Mat calculate_feature();
+	void calculate_feature();
+	void save_result(std::string result_file);
+
 private:
 	std::string m_img;
 	cv::Mat m_frame;
@@ -108,6 +100,7 @@ private:
 			int x_parts_count);
 	float strongest_edge(std::vector<float>& edges_streng, float threshold);
 	bool is_skin_pixel(cv::Vec3b bgr);
+	void save_feature(cv::Mat &feature, std::string file_name, std::string result_file);
 };
 
 #endif /* FEATURE_EXTRACTOR_H_ */

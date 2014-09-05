@@ -45,7 +45,7 @@ bool feature_extractor::check_img_path() {
 }
 
 bool feature_extractor::check_method() {
-	if (std::find(methods.begin(), methods.end(), m_method) == methods.end()) {
+	if (std::find(EXTRACT_FEATURE_METHODS.begin(), EXTRACT_FEATURE_METHODS.end(), m_method) == EXTRACT_FEATURE_METHODS.end()) {
 		std::cerr << m_method << " is not valid. \n";
 		std::cerr << 'Valid method "SCD", "EHD", "CD", "ALL"\n';
 		std::cerr << "Should use ALL only \n";
@@ -65,7 +65,7 @@ bool feature_extractor::is_valid() {
 	}
 }
 
-cv::Mat feature_extractor::calculate_feature() {
+void feature_extractor::calculate_feature() {
 	if (is_valid()) {
 		// read m_img as bgr matrix
 		m_frame = cv::imread(m_img, 1);
@@ -76,22 +76,19 @@ cv::Mat feature_extractor::calculate_feature() {
 
 		// 256 + 85 + 21
 		int cols = scd.cols + ehd.cols + cd.cols;
-		cv::Mat feature = cv::Mat::zeros(1, cols, CV_16U);
+		m_feature = cv::Mat::zeros(1, cols, CV_16U);
 		// merge into 1 feature to save somewhere
-		for (int i = 0; i < feature.cols; i++) {
+		for (int i = 0; i < m_feature.cols; i++) {
 			if (i < scd.cols) { //scd
-				feature.at<unsigned short>(0, i) = scd.at<unsigned short>(0, i);
+				m_feature.at<unsigned short>(0, i) = scd.at<unsigned short>(0, i);
 			} else if (i < (scd.cols + ehd.cols)) { // ehd
-				feature.at<unsigned short>(0, i) = ehd.at<unsigned short>(0, i - scd.cols) ;
+				m_feature.at<unsigned short>(0, i) = ehd.at<unsigned short>(0, i - scd.cols) ;
 			} else { // cd
-				feature.at<unsigned short>(0, i) = cd.at<unsigned short>(0, i - scd.cols - ehd.cols) ;
+				m_feature.at<unsigned short>(0, i) = cd.at<unsigned short>(0, i - scd.cols - ehd.cols) ;
 			}
 		}
-		return feature;
 	} else {
-		std::cerr << "not valid image \n";
-		cv::Mat error = cv::Mat::zeros(2, 2, CV_16U);
-		return error;
+		std::cerr << "Image or method is not valid \n";
 	}
 }
 
@@ -127,7 +124,7 @@ cv::Mat feature_extractor::calculate_scd(cv::Mat &frame) {
 //	std::cerr << frame.size().area() << "\n";
 //	std::cerr << cv::sum(scd) << "\n";
 //	std::cerr << scd;
-	scd = scd / frame.size().area() * NORM;
+	scd = scd / frame.size().area() * NORM_SIZE;
 	scd.convertTo(scd, CV_16U, 1, 0);
 	return scd;
 }
@@ -152,7 +149,7 @@ cv::Mat feature_extractor::calculate_scd(cv::Mat &frame) {
  */
 cv::Mat feature_extractor::calculate_ehd(cv::Mat &frame) {
 	cv::Mat ehd = cv::Mat::zeros(1, 85, CV_32F);
-	int rate = std::sqrt(ehd_block);
+	int rate = std::sqrt(EHD_BLOCK_COUNT);
 
 	// image -> 4x4 sub_image
 	// resize
@@ -218,7 +215,7 @@ cv::Mat feature_extractor::calculate_ehd(cv::Mat &frame) {
 
 	// TODO normalize then quantitize
 	// block's number = rate * rate
-	ehd = ehd * NORM;
+	ehd = ehd * NORM_SIZE;
 	ehd.convertTo(ehd, CV_16U, 1, 0);
 	return ehd;
 }
@@ -241,8 +238,8 @@ std::vector<float> feature_extractor::edges_streng(cv::Mat &frame_gray,
 		std::vector<cv::Rect> sub_rect;
 		sub_rect = split_rect(block_rect, 2, 2);
 		// sub block average gray level
-		for (unsigned count = 0; count < edge_filters.size(); count ++) {
-			std::vector<float> edge_filter = edge_filters[count];
+		for (unsigned count = 0; count < EDGE_FILTERS.size(); count ++) {
+			std::vector<float> edge_filter = EDGE_FILTERS[count];
 			// calculate average gray in 0,1,2,3 image_block
 			std::vector<float> subs_gray;
 			for (unsigned i = 0; i < sub_rect.size(); i++) {
@@ -359,7 +356,7 @@ cv::Mat feature_extractor::calculate_cd(cv::Mat &frame) {
 		cd_descriptor.at<float>(0, i) = compact2[i-5];
 	}
 	// TODO: norm
-	cd_descriptor = cd_descriptor * NORM;
+	cd_descriptor = cd_descriptor * NORM_SIZE;
 	cd_descriptor.convertTo(cd_descriptor, CV_16U, 1, 0);
 	return cd_descriptor;
 }
@@ -387,5 +384,32 @@ bool feature_extractor::is_skin_pixel(cv::Vec3b bgr) {
 		return true;
 	} else {
 		return false;
+	}
+}
+
+void feature_extractor::save_result(std::string result_file) {
+	save_feature(m_feature, m_img, result_file);
+}
+
+// Save image_path + feature's detail into result_file
+void feature_extractor::save_feature(cv::Mat &feature, std::string file_name, std::string result_file) {
+	if (feature.rows != 1) {
+		std::cerr << "Not a valid feature \n";
+	} else {
+		std::ofstream write_result(result_file.c_str(), std::ios_base::app);
+		if (write_result.is_open()) {
+			write_result << file_name << ",";
+			for (int i = 0; i < feature.cols; i++) {
+				if (i == (feature.cols - 1)) {
+					write_result << feature.at<unsigned short>(0, i) ;
+				} else {
+					write_result << feature.at<unsigned short>(0, i) << ",";
+				}
+			}
+			write_result << "\n";
+		} else {
+			std::cerr << "Unable to open " << result_file << "\n";
+		}
+		write_result.close();
 	}
 }
