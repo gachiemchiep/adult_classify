@@ -17,13 +17,13 @@
 //const int ADULT_TESTING_COUNT = 150;
 //const int NON_ADULT_TESTING_COUNT = 1000;
 
-const float ADULT_TEST_PER = 0.1;
-const float NON_ADULT_TEST_PER = 0.1;
-const float NN_PER = 0.1;
-
-const int RANK_MAX_SCORE = 1000;
-//const int NN_COUNT = 100; /**< nearest neighbor(base on rank score) count*/
-const float THRES = 0.7; /**< Thres value to decide whether image is adult or non*/
+//const float ADULT_TEST_PER = 0.1;
+//const float NON_ADULT_TEST_PER = 0.1;
+//const float NN_PER = 0.1;
+//
+//const int RANK_MAX_SCORE = 1000;
+////const int NN_COUNT = 100; /**< nearest neighbor(base on rank score) count*/
+//const float THRES = 0.7; /**< Thres value to decide whether image is adult or non*/
 
 using namespace std;
 using namespace cv;
@@ -90,7 +90,6 @@ cv::Mat convert_to_mat(std::vector<string> nums_vector) {
 		result.at<unsigned short>(0, i) = boost::lexical_cast<unsigned short>(
 				nums_vector[i]);
 	}
-
 	return result;
 }
 
@@ -283,9 +282,9 @@ int main(int argc, char *argv[]) {
 			<< non_adult_features_learn.size() << "\n";
 
 	// After merging shuffle features vecotr
-	std::random_shuffle(adult_features_test.begin(), adult_features_test.end());
-	std::random_shuffle(non_adult_features_test.begin(),
-			non_adult_features_test.end());
+//	std::random_shuffle(adult_features_test.begin(), adult_features_test.end());
+//	std::random_shuffle(non_adult_features_test.begin(),
+//			non_adult_features_test.end());
 
 	// calculate all distance and push into distances matrix
 	// 3 distances matrix : scd, ehd, cd
@@ -357,21 +356,21 @@ int main(int argc, char *argv[]) {
 	final_ranks = scd_ranks + ehd_ranks + cd_ranks;
 
 	// Save rank matrix
-//	cv::FileStorage save_scd_rank("scd_rank.xml", cv::FileStorage::WRITE);
-//	save_scd_rank << "scd_rank" << scd_ranks;
-//	save_scd_rank.release();
-//
-//	cv::FileStorage save_ehd_rank("ehd_rank.xml", cv::FileStorage::WRITE);
-//	save_ehd_rank << "ehd_rank" << ehd_ranks;
-//	save_ehd_rank.release();
-//
-//	cv::FileStorage save_cd_rank("cd_rank.xml", cv::FileStorage::WRITE);
-//	save_cd_rank << "cd_rank" << cd_ranks;
-//	save_cd_rank.release();
-//
-//	cv::FileStorage save_rank("rank.xml", cv::FileStorage::WRITE);
-//	save_rank << "rank" << final_ranks;
-//	save_rank.release();
+	cv::FileStorage save_scd_rank("scd_rank.xml", cv::FileStorage::WRITE);
+	save_scd_rank << "scd_rank" << scd_ranks;
+	save_scd_rank.release();
+
+	cv::FileStorage save_ehd_rank("ehd_rank.xml", cv::FileStorage::WRITE);
+	save_ehd_rank << "ehd_rank" << ehd_ranks;
+	save_ehd_rank.release();
+
+	cv::FileStorage save_cd_rank("cd_rank.xml", cv::FileStorage::WRITE);
+	save_cd_rank << "cd_rank" << cd_ranks;
+	save_cd_rank.release();
+
+	cv::FileStorage save_rank("rank.xml", cv::FileStorage::WRITE);
+	save_rank << "rank" << final_ranks;
+	save_rank.release();
 
 	int nn_count = floor(NN_PER * learning_features.size());
 	std::cerr << "Nearest Neighbord: " << nn_count << "\n";

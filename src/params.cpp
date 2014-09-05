@@ -20,3 +20,10 @@ std::vector<std::vector<float> > EDGE_FILTERS { VER_EDGE_FILTER,
 float EDGE_THRES = 50;
 int EHD_BLOCK_COUNT = 1024;
 int NORM_SIZE = 512;
+
+// Testing detail parameters
+float ADULT_TEST_PER = 0.1;
+float NON_ADULT_TEST_PER = 0.1;
+float NN_PER = 0.1;
+int RANK_MAX_SCORE = 1000;
+float THRES = 0.7;

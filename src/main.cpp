@@ -13,6 +13,8 @@
 #include <algorithm>
 #include <vector>
 #include <string>
+#include "utils.h"
+#include "execute_testing.h"
 
 using namespace std;
 using namespace boost::program_options;
@@ -26,26 +28,26 @@ int main(int argc, char *argv[]) {
 	boost::program_options::options_description do_testing_options("Execute testing options");
 
 	main_options.add_options()
-		("help, h",    "Print help message")
-		("rm_bg, r",    "Remove background ")
-		("extract_feature, e",    "Extract feature (scd+ehd+cd)")
-		("execute_testing, t",    "Execute testing")
+		("help,h",    "Print help message")
+		("rm_bg,r",    "Remove background ")
+		("extract_feature,e",    "Extract feature (scd+ehd+cd)")
+		("execute_testing,t",    "Execute testing")
 	;
 
 	rm_bg_options.add_options()
-		("bg_img, b",    value<string>(),    "Image path which is used for removing background")
+		("bg_img,b",    value<string>(),    "Image path which is used for removing background")
 		("rm_method",    value<string>()->default_value("all"),    "Method for removing background")
 	;
 
 	extract_feature_options.add_options()
-		("img_path, p",    value<string>(),    "Image path which is used for extracting feature")
+		("img_path,p",    value<string>(),    "Image path which is used for extracting feature")
 		("feature_type",    value<string>()->default_value("all"),    "Method for extracting feature.\nCurrently not usable")
 		("feature_file",    value<string>()->default_value("feature.txt",    "File in which feature will be appended to"));
 	;
 
 	do_testing_options.add_options()
-	    ("adult_features_file, x",    value<string>(),    "File contains all adult content images's feature vectors")
-	    ("non_adult_features_file, y",    value<string>(),    "File contains all no_adult content images's feature vectors")
+	    ("adult_features_file,x",    value<string>(),    "File contains all adult content images's feature vectors")
+	    ("non_adult_features_file,y",    value<string>(),    "File contains all no_adult content images's feature vectors")
 	;
 
 	// Combine into 1 option
@@ -141,10 +143,19 @@ int main(int argc, char *argv[]) {
 			   || (!parsed_values.count("non_adult_features_file"))
 			) {
 				std::cerr << main_options << "\n";
-			} else { // Have image
+			} else { // Have adult_features_file or non_adult_features_file
 				std::string adult_features_file = parsed_values["adult_features_file"].as<string>();
 				std::string non_adult_features_file = parsed_values["non_adult_features_file"].as<string>();
 				std::cerr << adult_features_file << " " << non_adult_features_file << "\n";
+
+				execute_testing do_test;
+				do_test.set_adult_features_file(adult_features_file);
+				do_test.set_non_adult_features_file(non_adult_features_file);
+				do_test.set_method("ALL");
+				std::cerr << do_test.get_adult_features_file() << "\n";
+				std::cerr << do_test.get_non_adult_features_file() << "\n";
+
+				do_test.evaluate_result();
 			}
 			std::cerr << "Testing finish!!! \n";
 			return 1;
