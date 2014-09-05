@@ -22,7 +22,7 @@ void bg_remove::set_img(std::string &img) {
 }
 
 void bg_remove::show_crop(int i) {
-	cv::imshow(v_methods[i] + "_crop", m_crop_mat);
+	cv::imshow(RM_BG_METHODS[i] + "_crop", m_crop_mat);
 }
 
 void bg_remove::run() {
@@ -33,7 +33,7 @@ void bg_remove::run() {
 void bg_remove::save_crop(int i) {
 
 	// save somewhere
-	std::string method = v_methods[i];
+	std::string method = RM_BG_METHODS[i];
 	boost::filesystem::path img_pth(m_img_path);
 	std::string crop_name = img_pth.stem().string() + "_" + method
 			+ img_pth.extension().string();
@@ -69,7 +69,7 @@ void bg_remove::crop_img(cv::Rect &roi) {
 }
 
 void bg_remove::show_bin(int i) {
-	cv::imshow(v_methods[i] + "_bin", m_crop_bin);
+	cv::imshow(RM_BG_METHODS[i] + "_bin", m_crop_bin);
 }
 
 void bg_remove::remove_noise() {
@@ -179,8 +179,8 @@ bool bg_remove::is_valid_img() {
 }
 
 bool bg_remove::is_valid_method() {
-	if (std::find(v_methods.begin(), v_methods.end(), m_method)
-			== v_methods.end()) {
+	if (std::find(RM_BG_METHODS.begin(), RM_BG_METHODS.end(), m_method)
+			== RM_BG_METHODS.end()) {
 		std::cerr << m_method << " is not valid. \n";
 		std::cerr
 				<< 'Valid method "RGB", "YCrCb", "HSV1", "HSV2", "RGB_norm", "HSI"';

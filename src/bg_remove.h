@@ -33,6 +33,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>
 #include <opencv2/opencv.hpp>
+#include "params.h"
 
 const cv::Size BLOCK_SIZE(8, 8);
 const cv::Mat MORPH_CLOSE_PARAMS(
@@ -53,8 +54,8 @@ public:
 protected:
 	std::string m_img_path;
 	std::string m_method = "HSI";
-	std::vector<std::string> v_methods { "RGB", "YCrCb", "HSV", "HLS",
-			"RGB_norm", "HSI" };
+//	std::vector<std::string> v_methods { "RGB", "YCrCb", "HSV", "HLS",
+//			"RGB_norm", "HSI" };
 	cv::Mat m_img_mat;
 	cv::Mat m_crop_mat;
 	cv::Mat m_crop_bin;
