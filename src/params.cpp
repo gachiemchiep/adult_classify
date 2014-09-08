@@ -22,8 +22,8 @@ int EHD_BLOCK_COUNT = 1024;
 int NORM_SIZE = 512;
 
 // Testing detail parameters
-float ADULT_TEST_PER = 0.1;
-float NON_ADULT_TEST_PER = 0.1;
+float ADULT_TEST_PER = 0.2;
+float NON_ADULT_TEST_PER = 0.2;
 float NN_PER = 0.1;
 int RANK_MAX_SCORE = 1000;
 float THRES = 0.7;

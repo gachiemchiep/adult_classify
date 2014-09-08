@@ -28,7 +28,8 @@ std::string execute_testing::get_adult_features_file() {
 }
 
 // Set non_adult features's file
-void execute_testing::set_non_adult_features_file(std::string non_adult_features_file) {
+void execute_testing::set_non_adult_features_file(
+		std::string non_adult_features_file) {
 	// TODO add check_valid
 	m_non_adult_features_file = non_adult_features_file;
 }
@@ -48,8 +49,8 @@ std::string execute_testing::get_method() {
 	return m_method;
 }
 
-void execute_testing::parse_features(std::string features_file, std::vector<std::string> &names,
-		std::vector<cv::Mat> &features) {
+void execute_testing::parse_features(std::string features_file,
+		std::vector<std::string> &names, std::vector<cv::Mat> &features) {
 	std::string line;
 	std::ifstream read_file(features_file);
 	std::vector<std::string> line_contains;
@@ -100,22 +101,34 @@ void execute_testing::shuffle_data() {
 
 // Split data then merge into test and learn set (Adult then non_adult)
 void execute_testing::split_features() {
+
+	// Shuffle data to get correct accuracy
+	shuffle_data();
+
 	std::vector<cv::Mat> adult_features_test, adult_features_learn;
 	std::vector<cv::Mat> non_adult_features_test, non_adult_features_learn;
 
 	int adult_test_count = floor(m_adult_features.size() * ADULT_TEST_PER);
-	int non_adult_test_count = floor(m_non_adult_features.size() * NON_ADULT_TEST_PER);
-	std::cerr << adult_test_count << " " << non_adult_test_count <<" \n";
+	int non_adult_test_count = floor(
+			m_non_adult_features.size() * NON_ADULT_TEST_PER);
+	std::cerr << "adult_count:" << m_adult_features.size()
+			<< "\nnon_adult_count:" << m_non_adult_features.size() << " \n";
+	std::cerr << "adult_test_count:" << adult_test_count
+			<< "\nnon_adult_test_count:" << non_adult_test_count << " \n";
+	std::cerr << "adult_learn_count:"
+			<< m_adult_features.size() - adult_test_count
+			<< "\nnon_adult_learn_count:"
+			<< m_non_adult_features.size() - non_adult_test_count << " \n";
+
 	split_vector(m_adult_features, adult_features_test, adult_features_learn,
 			adult_test_count);
 	split_vector(m_non_adult_features, non_adult_features_test,
 			non_adult_features_learn, non_adult_test_count);
 
-	printf("here first %d %d %d %d", adult_features_test.size(), adult_features_learn.size(), non_adult_features_test.size(), non_adult_features_learn.size());
-
 	join_vector(adult_features_test, non_adult_features_test, m_test_features);
-	join_vector(adult_features_learn, non_adult_features_learn, m_learn_features);
-	std::cerr << "Here: " << m_test_features.size() << " " << m_learn_features.size() << "\n";
+	join_vector(adult_features_learn, non_adult_features_learn,
+			m_learn_features);
+
 }
 
 // Calculate distances
@@ -143,14 +156,14 @@ void execute_testing::calculate_distances() {
 		}
 	}
 
-
 	m_distances_matrixes.scd_matrix = scd_distances;
 	m_distances_matrixes.ehd_matrix = ehd_distances;
 	m_distances_matrixes.cd_matrix = cd_distances;
 }
 
 // Calculate distances between 2 feature vectors
-features_distances execute_testing::feature_distances(cv::Mat feature1, cv::Mat feature2) {
+features_distances execute_testing::feature_distances(cv::Mat feature1,
+		cv::Mat feature2) {
 	features_distances result;
 
 	std::vector<float> results;
@@ -185,23 +198,24 @@ void execute_testing::calculate_ranks() {
 	int rank_matrix_rows = m_test_features.size();
 	int rank_matrix_cols = m_learn_features.size();
 	cv::Mat scd_ranks = cv::Mat::zeros(rank_matrix_rows, rank_matrix_cols,
-	CV_16U); /**< unsigned short*/
+			CV_16U); /**< unsigned short*/
 	cv::Mat ehd_ranks = cv::Mat::zeros(rank_matrix_rows, rank_matrix_cols,
-	CV_16U);
+			CV_16U);
 	cv::Mat cd_ranks = cv::Mat::zeros(rank_matrix_rows, rank_matrix_cols,
-	CV_16U);
+			CV_16U);
 	cv::Mat final_ranks = cv::Mat::zeros(rank_matrix_rows, rank_matrix_cols,
-	CV_16U);
+			CV_16U);
 
 	// Calculate rank score for each matrix
 	for (unsigned i = 0; i < m_test_features.size(); i++) {
-		cv::Mat scd_rank_i = rank_from_distances(m_distances_matrixes.scd_matrix.row(i),
-				RANK_MAX_SCORE);
+		cv::Mat scd_rank_i = rank_from_distances(
+				m_distances_matrixes.scd_matrix.row(i), RANK_MAX_SCORE);
 		scd_rank_i.copyTo(scd_ranks.row(i));
-		cv::Mat ehd_rank_i = rank_from_distances(m_distances_matrixes.ehd_matrix.row(i),
-				RANK_MAX_SCORE);
+		cv::Mat ehd_rank_i = rank_from_distances(
+				m_distances_matrixes.ehd_matrix.row(i), RANK_MAX_SCORE);
 		ehd_rank_i.copyTo(ehd_ranks.row(i));
-		cv::Mat cd_rank_i = rank_from_distances(m_distances_matrixes.cd_matrix.row(i), RANK_MAX_SCORE);
+		cv::Mat cd_rank_i = rank_from_distances(
+				m_distances_matrixes.cd_matrix.row(i), RANK_MAX_SCORE);
 		cd_rank_i.copyTo(cd_ranks.row(i));
 	}
 
@@ -249,32 +263,29 @@ void execute_testing::print_result() {
 
 	if (m_method == "SCD") {
 		std::cerr << "Method is SCD\n";
-		rank =  m_ranks_matrixes.scd_matrix;
+		rank = m_ranks_matrixes.scd_matrix;
 	} else if (m_method == "EHD") {
 		std::cerr << "Method is EHD\n";
-		rank =  m_ranks_matrixes.ehd_matrix;
+		rank = m_ranks_matrixes.ehd_matrix;
 	} else if (m_method == "CD") {
 		std::cerr << "Method is CD\n";
-		rank =  m_ranks_matrixes.cd_matrix;
+		rank = m_ranks_matrixes.cd_matrix;
 	} else {
 		std::cerr << "Method is ALL\n";
-		rank = m_ranks_matrixes.scd_matrix + m_ranks_matrixes.ehd_matrix + m_ranks_matrixes.cd_matrix;
+		rank = m_ranks_matrixes.scd_matrix + m_ranks_matrixes.ehd_matrix
+				+ m_ranks_matrixes.cd_matrix;
 	}
 
-	cv::FileStorage save_ranks("sum_ranks_f.xml",
-			cv::FileStorage::WRITE);
+	cv::FileStorage save_ranks("sum_ranks_f.xml", cv::FileStorage::WRITE);
 	save_ranks << "cd" << rank;
 	save_ranks.release();
 
 	int nn_count = floor(NN_PER * m_learn_features.size());
 	std::cerr << "Nearest Neighbord: " << nn_count << "\n";
-	// TODO somethine nasty happen here
-	/**< Count corresponding adult, non-adult for each testing image*/
-	// adult count - non_adult count
 	cv::Mat testing_result = cv::Mat::zeros(m_test_features.size(), 2, CV_16U);
-	int adult_features_learn_count = m_adult_features.size() - floor(m_adult_features.size() * ADULT_TEST_PER);
-	int adult_features_test_count = floor(m_adult_features.size() * ADULT_TEST_PER);
-	std::cerr << "adult_features_count " << adult_features_learn_count << "\n";
+	int adult_features_learn_count = m_adult_features.size()
+			- floor(m_adult_features.size() * ADULT_TEST_PER);
+
 	for (unsigned i = 0; i < m_test_features.size(); i++) {
 		std::vector<nums_pair<int> > tmp_result = find_large_rank(rank.row(i),
 				nn_count);
@@ -291,10 +302,11 @@ void execute_testing::print_result() {
 	int adult_false_count = 0;
 	int non_adult_true_count = 0;
 	int non_adult_false_count = 0;
-
+	int adult_features_test_count = floor(
+			m_adult_features.size() * ADULT_TEST_PER);
 	for (int i = 0; i < testing_result.rows; i++) {
 		// adult file
-		if (i < adult_features_learn_count) {
+		if (i < adult_features_test_count) {
 			float per = float(testing_result.at<unsigned short>(i, 0))
 					/ nn_count;
 			if (per > THRES) {
@@ -313,10 +325,12 @@ void execute_testing::print_result() {
 		}
 	}
 
-	int adult_accuracy = floor(float(adult_true_count)
-			/ (adult_true_count + adult_false_count) * 100);
-	int non_adult_accuracy = floor(float(non_adult_true_count)
-			/ (non_adult_true_count + non_adult_false_count) * 100);
+	int adult_accuracy = floor(
+			float(adult_true_count) / (adult_true_count + adult_false_count)
+					* 100);
+	int non_adult_accuracy = floor(
+			float(non_adult_true_count)
+					/ (non_adult_true_count + non_adult_false_count) * 100);
 
 	std::cerr << "Adult:\t\t" << "true_count:" << adult_true_count
 			<< " false_count:" << adult_false_count << " Per:" << adult_accuracy
@@ -329,7 +343,8 @@ void execute_testing::print_result() {
 /*
  * Find max_rank positions which have largest rank score value
  */
-std::vector<nums_pair<int>> execute_testing::find_large_rank(cv::Mat rank_mat, int max_count) {
+std::vector<nums_pair<int>> execute_testing::find_large_rank(cv::Mat rank_mat,
+		int max_count) {
 
 	std::vector<nums_pair<int>> result;
 
@@ -363,7 +378,6 @@ void execute_testing::evaluate_result() {
 	// TODO some bug happen, bug make result go wrong
 	// TODO temporaly disable shuffle, combine result with correct one
 	get_data(); // OK
-//	shuffle_data();
 	split_features();
 	calculate_distances(); // distances is ok, nothing wrong
 	calculate_ranks();
@@ -384,18 +398,15 @@ void execute_testing::evaluate_result() {
 	save_cd_distances << "cd" << m_distances_matrixes.cd_matrix;
 	save_cd_distances.release();
 
-	cv::FileStorage save_scd_ranks("scd_ranks_f.xml",
-			cv::FileStorage::WRITE);
+	cv::FileStorage save_scd_ranks("scd_ranks_f.xml", cv::FileStorage::WRITE);
 	save_scd_ranks << "scd" << m_ranks_matrixes.scd_matrix;
 	save_scd_ranks.release();
 
-	cv::FileStorage save_ehd_ranks("ehd_ranks_f.xml",
-			cv::FileStorage::WRITE);
+	cv::FileStorage save_ehd_ranks("ehd_ranks_f.xml", cv::FileStorage::WRITE);
 	save_ehd_ranks << "ehd" << m_ranks_matrixes.ehd_matrix;
 	save_ehd_ranks.release();
 
-	cv::FileStorage save_cd_ranks("cd_ranks_f.xml",
-			cv::FileStorage::WRITE);
+	cv::FileStorage save_cd_ranks("cd_ranks_f.xml", cv::FileStorage::WRITE);
 	save_cd_ranks << "cd" << m_ranks_matrixes.cd_matrix;
 	save_cd_ranks.release();
 }
