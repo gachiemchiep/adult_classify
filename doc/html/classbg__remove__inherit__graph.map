@@ -1,0 +1,8 @@
+<map id="bg_remove" name="bg_remove">
+<area shape="rect" id="node2" href="$classhls.html" title="hls" alt="" coords="5,80,43,107"/>
+<area shape="rect" id="node3" href="$classhsi.html" title="hsi" alt="" coords="67,80,105,107"/>
+<area shape="rect" id="node4" href="$classhsv.html" title="hsv" alt="" coords="131,80,173,107"/>
+<area shape="rect" id="node5" href="$classrgb.html" title="rgb" alt="" coords="197,80,237,107"/>
+<area shape="rect" id="node6" href="$classrgb__norm.html" title="rgb_norm" alt="" coords="262,80,337,107"/>
+<area shape="rect" id="node7" href="$classycrcb.html" title="ycrcb" alt="" coords="362,80,416,107"/>
+</map>

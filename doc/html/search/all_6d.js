@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['m_5fadult_5ffeatures',['m_adult_features',['../classexecute__testing.html#ae973c8418d9f87d8267740a49da010c4',1,'execute_testing']]],
+  ['m_5fadult_5ffeatures_5ffile',['m_adult_features_file',['../classexecute__testing.html#aae991fe793087b1d8bead4708e3e0ce0',1,'execute_testing']]],
+  ['m_5fcrop_5fbin',['m_crop_bin',['../classbg__remove.html#a8323a5cc07b152bb4ae4e34cb37083cf',1,'bg_remove']]],
+  ['m_5fcrop_5fmat',['m_crop_mat',['../classbg__remove.html#a029ac4dac06b1084a7f22a91f0992a03',1,'bg_remove']]],
+  ['m_5fdistance',['m_distance',['../classexecute__testing.html#acd74083201436d7aa6053f8c9d19789c',1,'execute_testing']]],
+  ['m_5fdistances_5fmatrixes',['m_distances_matrixes',['../classexecute__testing.html#a6cbbd5df863300891bea287e0d27350d',1,'execute_testing']]],
+  ['m_5ffeature',['m_feature',['../classfeature__extractor.html#a1a0acab40b530bcf63d59676d0cd0c53',1,'feature_extractor']]],
+  ['m_5fframe',['m_frame',['../classfeature__extractor.html#abbf58e645355673e53826949f7402dda',1,'feature_extractor']]],
+  ['m_5fimg',['m_img',['../classfeature__extractor.html#a616df7e8a3c0ade3ff66489aaf25d6a9',1,'feature_extractor']]],
+  ['m_5fimg_5fmat',['m_img_mat',['../classbg__remove.html#aaaa7e25387295e3d5ef2baa93e5798ee',1,'bg_remove']]],
+  ['m_5fimg_5fpath',['m_img_path',['../classbg__remove.html#a4999340107d4bddd405d4d5587d62f6f',1,'bg_remove']]],
+  ['m_5flearn_5ffeatures',['m_learn_features',['../classexecute__testing.html#a62d2bf5276916a01df3315f23d059076',1,'execute_testing']]],
+  ['m_5fmethod',['m_method',['../classbg__remove.html#a532fad2d1b901da6de7084a4d7701b18',1,'bg_remove::m_method()'],['../classexecute__testing.html#ac18b05070018d7358425873f04e0999e',1,'execute_testing::m_method()'],['../classfeature__extractor.html#ac8a087a9c56f253bd034ac83050d3e5d',1,'feature_extractor::m_method()']]],
+  ['m_5fnon_5fadult_5ffeatures',['m_non_adult_features',['../classexecute__testing.html#a3564e0331aef4862c339f951210ba604',1,'execute_testing']]],
+  ['m_5fnon_5fadult_5ffeatures_5ffile',['m_non_adult_features_file',['../classexecute__testing.html#a0443e25a04250f1ae59371d9b226eba3',1,'execute_testing']]],
+  ['m_5franks_5fmatrixes',['m_ranks_matrixes',['../classexecute__testing.html#a94cfbfc47d2cc463a0035060e9076339',1,'execute_testing']]],
+  ['m_5froi',['m_roi',['../classbg__remove.html#aa9dbcd2b4333504908ff3265adedd619',1,'bg_remove']]],
+  ['m_5ftest_5ffeatures',['m_test_features',['../classexecute__testing.html#afb7d859b1e9fc008a056dc582c0d944a',1,'execute_testing']]],
+  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['matrixes',['matrixes',['../structmatrixes.html',1,'']]],
+  ['maximum',['maximum',['../feature__extractor_8h.html#a2a3a94e0bb6be073e48cca829f1f98ad',1,'feature_extractor.h']]],
+  ['min_5foverlap',['MIN_OVERLAP',['../bg__remove_8h.html#ae3f0efa6a4933447c303cce31cf6b9ed',1,'bg_remove.h']]],
+  ['morph_5fclose_5fparams',['MORPH_CLOSE_PARAMS',['../bg__remove_8h.html#afea45fdae62aecd2d989f99acb317e8b',1,'bg_remove.h']]],
+  ['multiply_5fscalars',['multiply_scalars',['../feature__extractor_8h.html#a0b60cc07b94db22e66010751d8846649',1,'feature_extractor.h']]]
+];

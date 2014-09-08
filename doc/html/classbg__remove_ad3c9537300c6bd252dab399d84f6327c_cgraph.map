@@ -1,0 +1,11 @@
+<map id="bg_remove::run" name="bg_remove::run">
+<area shape="rect" id="node2" href="$classbg__remove.html#a916dce6dd98576a4e33744aee8dfe34b" title="bg_remove::remove_noise" alt="" coords="166,129,341,156"/>
+<area shape="rect" id="node10" href="$classbg__remove.html#a645fbbdd349ebff0e801b2f067eea40b" title="bg_remove::crop_img" alt="" coords="180,180,327,207"/>
+<area shape="rect" id="node3" href="$classbg__remove.html#acd887517c05fed59446921cf14285ed9" title="bg_remove::find_skin\l_block" alt="" coords="397,23,544,65"/>
+<area shape="rect" id="node6" href="$classbg__remove.html#a051a0770c13d013808d0bd38bb3ad8c2" title="bg_remove::connect\l_skin_block" alt="" coords="401,89,541,130"/>
+<area shape="rect" id="node8" href="$classbg__remove.html#ab8dba2255626f9d664e0cc788421586c" title="bg_remove::find_largest\l_skin_block" alt="" coords="390,154,551,195"/>
+<area shape="rect" id="node9" href="$classbg__remove.html#a5c73254ff3439b397233b3aef9d11be8" title="bg_remove::analyze_roi" alt="" coords="391,220,551,247"/>
+<area shape="rect" id="node4" href="$bg__remove_8h.html#a1b693534cf4c588f77a0b8ae82135863" title="BLOCK_SIZE" alt="" coords="837,5,941,32"/>
+<area shape="rect" id="node5" href="$classbg__remove.html#a58a35c1e8a45db50421d49d3c5924b3f" title="bg_remove::is_skin\l_block" alt="" coords="627,27,762,69"/>
+<area shape="rect" id="node7" href="$bg__remove_8h.html#afea45fdae62aecd2d989f99acb317e8b" title="MORPH_CLOSE_PARAMS" alt="" coords="601,96,789,123"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="bg_remove::is_valid_img" name="bg_remove::is_valid_img">
+<area shape="rect" id="node2" href="$classbg__remove.html#acdd4f90f066fb83a720068bb78a6ccbd" title="bg_remove::init" alt="" coords="222,5,333,32"/>
+<area shape="rect" id="node3" href="$classrgb.html#a595c177a96e8b7f44e7e8d1b661fa0c1" title="rgb::init" alt="" coords="245,56,310,83"/>
+<area shape="rect" id="node4" href="$classycrcb.html#a97710c1ad72417c4afe9952f4778bb29" title="ycrcb::init" alt="" coords="238,107,317,133"/>
+<area shape="rect" id="node5" href="$classrgb__norm.html#ab6012fb097e6db9988977d1c7afd626c" title="rgb_norm::init" alt="" coords="227,157,328,184"/>
+<area shape="rect" id="node6" href="$classhsv.html#a2cbea26e71600ff871812aa9c73c47ea" title="hsv::init" alt="" coords="243,208,311,235"/>
+<area shape="rect" id="node7" href="$classhls.html#ae5c6e66a8f4490332f28b1ec7522ecca" title="hls::init" alt="" coords="245,259,309,285"/>
+<area shape="rect" id="node8" href="$classhsi.html#af26349a8e61c4e3311005d8e931ec882" title="hsi::init" alt="" coords="245,309,309,336"/>
+</map>
