@@ -16,39 +16,60 @@ execute_testing::~execute_testing() {
 	// TODO Auto-generated destructor stub
 }
 
-// Set adult features's file
+/**
+ * Set adult data's file location
+ * Each line of data's file has the following structure
+ * file_location,x[1],..x[256],x[257],..,x[341],x[342],..,x[366]
+ */
 void execute_testing::set_adult_features_file(std::string adult_features_file) {
 	// TODO add check_valid
 	m_adult_features_file = adult_features_file;
 }
 
-// Return adult features's file
+/**
+ * Get adult data's file location
+ */
 std::string execute_testing::get_adult_features_file() {
 	return m_adult_features_file;
 }
 
-// Set non_adult features's file
+/**
+ * Set non-adult data's file location
+ * Each line of data's file has the following structure
+ * file_location,x[1],..x[256],x[257],..,x[341],x[342],..,x[366]
+ */
 void execute_testing::set_non_adult_features_file(
 		std::string non_adult_features_file) {
 	// TODO add check_valid
 	m_non_adult_features_file = non_adult_features_file;
 }
 
-// Return non_adult features's file
+/**
+ * Get non-adult data's file location
+ */
 std::string execute_testing::get_non_adult_features_file() {
 	return m_non_adult_features_file;
 }
 
-// Set method
+/**
+ * Set method
+ * Corresponding to method's name these following features will
+ * be used : scd, ehd, cd , all of scd-ehd-cd
+ */
 void execute_testing::set_method(std::string method_name) {
 	m_method = method_name;
 }
 
-// Get method
+/**
+ * Get method
+ */
 std::string execute_testing::get_method() {
 	return m_method;
 }
 
+/**
+ * Parse features from txt file into cv::Mat
+ */
 void execute_testing::parse_features(std::string features_file,
 		std::vector<std::string> &names, std::vector<cv::Mat> &features) {
 	std::string line;
@@ -72,7 +93,9 @@ void execute_testing::parse_features(std::string features_file,
 	}
 }
 
-// convert a vector of string to mat
+/**
+ * Convert vector of integer contain string into cv::Mat
+ */
 cv::Mat execute_testing::vector_to_mat(std::vector<std::string> nums_vector) {
 	cv::Mat result = cv::Mat::zeros(1, nums_vector.size(), CV_16U);
 	for (unsigned i = 0; i < nums_vector.size(); i++) {
@@ -82,7 +105,10 @@ cv::Mat execute_testing::vector_to_mat(std::vector<std::string> nums_vector) {
 	return result;
 }
 
-// Parse input feature file's content into process data
+/**
+ * Parse adult data, non-adult data from corresponding
+ * data file into process's flow
+ */
 void execute_testing::get_data() {
 	// TODO check validity
 	std::vector<std::string> adult_files, non_adult_files;
@@ -92,14 +118,25 @@ void execute_testing::get_data() {
 			m_non_adult_features);
 }
 
-// Shuffle features
+/**
+ * Shuffle input data to get correct accuracy
+ */
 void execute_testing::shuffle_data() {
 	std::random_shuffle(m_adult_features.begin(), m_adult_features.end());
 	std::random_shuffle(m_non_adult_features.begin(),
 			m_non_adult_features.end());
 }
 
-// Split data then merge into test and learn set (Adult then non_adult)
+/**
+ * Split adult, non-adult data into test and learn set.
+ * The order is as follow
+ * Adult_1
+ * :
+ * Adult_n
+ * non-adult_1
+ * :
+ * non-adult_m
+ */
 void execute_testing::split_features() {
 
 	// Shuffle data to get correct accuracy
@@ -131,7 +168,10 @@ void execute_testing::split_features() {
 
 }
 
-// Calculate distances
+/**
+ * Calculate all 3 types of distances and put into corresponding
+ * contain matrix
+ */
 void execute_testing::calculate_distances() {
 	int distances_matrix_rows = m_test_features.size();
 	int distances_matrix_cols = m_learn_features.size();
@@ -161,7 +201,9 @@ void execute_testing::calculate_distances() {
 	m_distances_matrixes.cd_matrix = cd_distances;
 }
 
-// Calculate distances between 2 feature vectors
+/**
+ * 3 type of distances are calculated from parsed feature matrixes
+ */
 features_distances execute_testing::feature_distances(cv::Mat feature1,
 		cv::Mat feature2) {
 	features_distances result;
@@ -192,7 +234,10 @@ features_distances execute_testing::feature_distances(cv::Mat feature1,
 	return result;
 }
 
-// Calculate ranks
+/**
+ * From calculated distance matrixed, extract rank scores for each
+ * feature. \n
+ */
 void execute_testing::calculate_ranks() {
 	// Rank score matrix
 	int rank_matrix_rows = m_test_features.size();
@@ -224,10 +269,10 @@ void execute_testing::calculate_ranks() {
 	m_ranks_matrixes.cd_matrix = cd_ranks;
 }
 
-/*
- * Calculate rank score base on distance
- * Smaller distance got higher rank score
- * Maximum score = max_rank
+/**
+ * Rank is calculated as following formula : \n
+ * n-th lowest distance feature's rank score
+ * = number of nearest neighbor - n
  */
 cv::Mat execute_testing::rank_from_distances(cv::Mat distances, int max_rank) {
 
@@ -257,7 +302,9 @@ cv::Mat execute_testing::rank_from_distances(cv::Mat distances, int max_rank) {
 	return rank;
 }
 
-// Calculate final results
+/**
+ * Count accurary base on rank scores
+ */
 void execute_testing::print_result() {
 	cv::Mat rank;
 
@@ -340,7 +387,7 @@ void execute_testing::print_result() {
 			<< non_adult_accuracy << "%\n";
 }
 
-/*
+/**
  * Find max_rank positions which have largest rank score value
  */
 std::vector<nums_pair<int>> execute_testing::find_large_rank(cv::Mat rank_mat,
@@ -372,41 +419,43 @@ std::vector<nums_pair<int>> execute_testing::find_large_rank(cv::Mat rank_mat,
 	return result;
 }
 
-// Do the test
+/**
+ * Do testing,
+ * Print out result to std::cerr
+ */
 void execute_testing::evaluate_result() {
 	// TODO check validity
-	// TODO some bug happen, bug make result go wrong
-	// TODO temporaly disable shuffle, combine result with correct one
 	get_data(); // OK
 	split_features();
 	calculate_distances(); // distances is ok, nothing wrong
 	calculate_ranks();
 	print_result();
 
-	cv::FileStorage save_scd_distances("scd_distances_f.xml",
-			cv::FileStorage::WRITE);
-	save_scd_distances << "scd" << m_distances_matrixes.scd_matrix;
-	save_scd_distances.release();
-
-	cv::FileStorage save_ehd_distances("ehd_distances_f.xml",
-			cv::FileStorage::WRITE);
-	save_ehd_distances << "ehd" << m_distances_matrixes.ehd_matrix;
-	save_ehd_distances.release();
-
-	cv::FileStorage save_cd_distances("cd_distances_f.xml",
-			cv::FileStorage::WRITE);
-	save_cd_distances << "cd" << m_distances_matrixes.cd_matrix;
-	save_cd_distances.release();
-
-	cv::FileStorage save_scd_ranks("scd_ranks_f.xml", cv::FileStorage::WRITE);
-	save_scd_ranks << "scd" << m_ranks_matrixes.scd_matrix;
-	save_scd_ranks.release();
-
-	cv::FileStorage save_ehd_ranks("ehd_ranks_f.xml", cv::FileStorage::WRITE);
-	save_ehd_ranks << "ehd" << m_ranks_matrixes.ehd_matrix;
-	save_ehd_ranks.release();
-
-	cv::FileStorage save_cd_ranks("cd_ranks_f.xml", cv::FileStorage::WRITE);
-	save_cd_ranks << "cd" << m_ranks_matrixes.cd_matrix;
-	save_cd_ranks.release();
+// Need result files. Uncomment these lines below
+//	cv::FileStorage save_scd_distances("scd_distances_f.xml",
+//			cv::FileStorage::WRITE);
+//	save_scd_distances << "scd" << m_distances_matrixes.scd_matrix;
+//	save_scd_distances.release();
+//
+//	cv::FileStorage save_ehd_distances("ehd_distances_f.xml",
+//			cv::FileStorage::WRITE);
+//	save_ehd_distances << "ehd" << m_distances_matrixes.ehd_matrix;
+//	save_ehd_distances.release();
+//
+//	cv::FileStorage save_cd_distances("cd_distances_f.xml",
+//			cv::FileStorage::WRITE);
+//	save_cd_distances << "cd" << m_distances_matrixes.cd_matrix;
+//	save_cd_distances.release();
+//
+//	cv::FileStorage save_scd_ranks("scd_ranks_f.xml", cv::FileStorage::WRITE);
+//	save_scd_ranks << "scd" << m_ranks_matrixes.scd_matrix;
+//	save_scd_ranks.release();
+//
+//	cv::FileStorage save_ehd_ranks("ehd_ranks_f.xml", cv::FileStorage::WRITE);
+//	save_ehd_ranks << "ehd" << m_ranks_matrixes.ehd_matrix;
+//	save_ehd_ranks.release();
+//
+//	cv::FileStorage save_cd_ranks("cd_ranks_f.xml", cv::FileStorage::WRITE);
+//	save_cd_ranks << "cd" << m_ranks_matrixes.cd_matrix;
+//	save_cd_ranks.release();
 }

@@ -1,8 +1,8 @@
-/*
- * BackgroundRemoval.cpp
+/**
+ * @file BackgroundRemoval.cpp
  *
  *  Created on: Aug 21, 2014
- *      Author: gachiemchiep
+ *  Author: gachiemchiep
  */
 
 #include "bg_remove.h"
@@ -30,6 +30,9 @@ void bg_remove::run() {
 	crop_img(m_roi);
 }
 
+/**
+ * Save background removed image base on method
+ */
 void bg_remove::save_crop(int i) {
 
 	// save somewhere
@@ -42,6 +45,10 @@ void bg_remove::save_crop(int i) {
 	cv::imwrite(m_img_path, m_crop_mat);
 }
 
+/**
+ * Whether ROI(region of interest) sastified image's size condition
+ * Size :(height > 50) && (width > 50)
+ */
 cv::Rect bg_remove::analyze_roi(cv::Rect largest_block) {
 	int area = largest_block.area();
 	if ((area < (m_img_mat.size().area() * MIN_OVERLAP))
@@ -53,6 +60,9 @@ cv::Rect bg_remove::analyze_roi(cv::Rect largest_block) {
 	}
 }
 
+/**
+ * Remove non-skin pixels from input image
+ */
 void bg_remove::crop_img(cv::Rect &roi) {
 	m_crop_mat = m_img_mat(roi);
 	// crop binary image
@@ -68,6 +78,9 @@ void bg_remove::crop_img(cv::Rect &roi) {
 	}
 }
 
+/**
+ * Show non-skin pixels removed binary image
+ */
 void bg_remove::show_bin(int i) {
 	cv::imshow(RM_BG_METHODS[i] + "_bin", m_crop_bin);
 }
@@ -85,6 +98,9 @@ void bg_remove::remove_noise() {
 	m_roi = analyze_roi(m_roi);
 }
 
+/**
+ * Find skin pixel blocks
+ */
 void bg_remove::find_skin_block() {
 	int width = m_crop_bin.cols;
 	int height = m_crop_bin.rows;
@@ -109,6 +125,11 @@ void bg_remove::find_skin_block() {
 	}
 }
 
+/**
+ * Whether skin pixel blocks really a skin block
+ * Condition: have more than 25% region of block
+ *            is skin pixels
+ */
 bool bg_remove::is_skin_block(cv::Rect block_r, cv::Mat &m_crop_bin_fixed) {
 	int count = 0;
 	for (int h = block_r.y; h < (block_r.y + block_r.height); h++) {
@@ -126,12 +147,21 @@ bool bg_remove::is_skin_block(cv::Rect block_r, cv::Mat &m_crop_bin_fixed) {
 	}
 }
 
+/**
+ * After removing non-pixel blocks, connect blocks using
+ * close transformation
+ */
 void bg_remove::connect_skin_block() {
 	cv::morphologyEx(m_crop_bin, m_crop_bin, cv::MORPH_CLOSE,
 			MORPH_CLOSE_PARAMS);
 	cv::threshold(m_crop_bin, m_crop_bin, 0, 255, cv::THRESH_BINARY);
 }
 
+/**
+ * Find largest block formed after close transformation
+ * The other blocks are consider as noise and remove from
+ * image
+ */
 void bg_remove::find_largest_skin_block() {
 	std::vector<std::vector<cv::Point> > contours;
 	std::vector<cv::Vec4i> hierachy;
@@ -167,6 +197,9 @@ void bg_remove::find_largest_skin_block() {
 
 }
 
+/**
+ * Is input image valid?
+ */
 bool bg_remove::is_valid_img() {
 	m_img_mat = cv::imread(m_img_path, 1);
 	if (m_img_mat.data != NULL) {
@@ -178,6 +211,9 @@ bool bg_remove::is_valid_img() {
 	}
 }
 
+/**
+ * Is input method valid?
+ */
 bool bg_remove::is_valid_method() {
 	if (std::find(RM_BG_METHODS.begin(), RM_BG_METHODS.end(), m_method)
 			== RM_BG_METHODS.end()) {
@@ -190,6 +226,9 @@ bool bg_remove::is_valid_method() {
 	}
 }
 
+/**
+ * Init
+ */
 void bg_remove::init() {
 	if (is_valid_img()) {
 		std::cerr << "Running \n";
@@ -200,6 +239,9 @@ void bg_remove::init() {
 	}
 }
 
+/**
+ * non-skin decider base on RGB rule
+ */
 void rgb::init() {
 	if (is_valid_img()) {
 		for (int h = 0; h < m_crop_mat.rows; h++) {
@@ -213,6 +255,9 @@ void rgb::init() {
 	}
 }
 
+/**
+ * Is a skin pixel base on RGB rule
+ */
 bool rgb::is_skin_pixel(cv::Vec3b bgr) {
 	int blue = bgr[0];
 	int green = bgr[1];
@@ -233,6 +278,9 @@ bool rgb::is_skin_pixel(cv::Vec3b bgr) {
 	}
 }
 
+/**
+ * non-skin decider base on YCrCb rule
+ */
 void ycrcb::init() {
 	if (is_valid_img()) {
 		cv::cvtColor(m_crop_mat, m_crop_mat, CV_BGR2YCrCb);
@@ -248,6 +296,9 @@ void ycrcb::init() {
 	}
 }
 
+/**
+ * Is a skin pixel base on YCrCb rule
+ */
 bool ycrcb::is_skin_pixel(cv::Vec3b ycrcb) {
 	int cr = ycrcb[1];
 	int cb = ycrcb[2];
@@ -258,6 +309,9 @@ bool ycrcb::is_skin_pixel(cv::Vec3b ycrcb) {
 	}
 }
 
+/**
+ * non-skin decider base on RGB normalize rule
+ */
 void rgb_norm::init() {
 	if (is_valid_img()) {
 		for (int h = 0; h < m_crop_mat.rows; h++) {
@@ -271,6 +325,9 @@ void rgb_norm::init() {
 	}
 }
 
+/**
+ * Is a skin pixel base on RGB normalize rule
+ */
 bool rgb_norm::is_skin_pixel(cv::Vec3b bgr) {
 	float b = float(bgr[0]);
 	float g = float(bgr[1]);
@@ -290,6 +347,9 @@ bool rgb_norm::is_skin_pixel(cv::Vec3b bgr) {
 	}
 }
 
+/**
+ * non-skin decider base on HSV rule
+ */
 void hsv::init() {
 	if (is_valid_img()) {
 		cv::cvtColor(m_crop_mat, m_crop_mat, CV_BGR2HSV);
@@ -305,7 +365,10 @@ void hsv::init() {
 	}
 }
 
-// h:0->180, s:0->255, v:0->255
+/**
+ * Is a skin pixel base on RGB normalize rule
+ * OpenCV range h:0->180, s:0->255, v:0->255
+ */
 bool hsv::is_skin_pixel(cv::Vec3b hsv1) {
 	int h = hsv1[0];
 	int s = hsv1[1];
@@ -322,6 +385,9 @@ bool hsv::is_skin_pixel(cv::Vec3b hsv1) {
 	}
 }
 
+/**
+ * non-skin decider base on HSV rule
+ */
 void hls::init() {
 	if (is_valid_img()) {
 		cv::cvtColor(m_crop_mat, m_crop_mat, CV_BGR2HLS);
@@ -337,6 +403,9 @@ void hls::init() {
 	}
 }
 
+/**
+ * Is a skin pixel base on HLS  rule
+ */
 bool hls::is_skin_pixel(cv::Vec3b hls) {
 	int h = hls[0];
 	int l = hls[1];
@@ -349,6 +418,9 @@ bool hls::is_skin_pixel(cv::Vec3b hls) {
 	}
 }
 
+/**
+ * non-skin decider base on HSI rule
+ */
 void hsi::init() {
 	if (is_valid_img()) {
 		for (int h = 0; h < m_crop_mat.rows; h++) {
@@ -362,6 +434,9 @@ void hsi::init() {
 	}
 }
 
+/**
+ * Is a skin pixel base on HSI  rule
+ */
 bool hsi::is_skin_pixel(cv::Vec3b bgr) {
 	float b = float(bgr[0]);
 	float g = float(bgr[1]);

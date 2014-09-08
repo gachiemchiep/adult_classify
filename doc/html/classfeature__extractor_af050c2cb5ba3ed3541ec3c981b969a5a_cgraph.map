@@ -1,7 +1,7 @@
 <map id="feature_extractor::calculate_ehd" name="feature_extractor::calculate_ehd">
-<area shape="rect" id="node2" href="$classfeature__extractor.html#a74646c943b032b1625a8f70d7903ece7" title="feature_extractor::\lsplit_rect" alt="" coords="357,5,485,46"/>
-<area shape="rect" id="node3" href="$classfeature__extractor.html#af5cc40f772409dbc03fe4b0fc5a0c3db" title="feature_extractor::\ledges_streng" alt="" coords="181,63,309,105"/>
-<area shape="rect" id="node5" href="$classfeature__extractor.html#a72b821a4c52bfbfc0fc7772629520652" title="feature_extractor::\lstrongest_edge" alt="" coords="181,129,309,170"/>
+<area shape="rect" id="node2" href="$classfeature__extractor.html#a74646c943b032b1625a8f70d7903ece7" title="Divide input rect into smaller part for x axis : divide into x_part_counts for y axis : divide into y..." alt="" coords="357,5,485,46"/>
+<area shape="rect" id="node3" href="$classfeature__extractor.html#af5cc40f772409dbc03fe4b0fc5a0c3db" title="Calculate edge streng for ehd feature descriptors edge type is ver, hor, dia45, dia135, nond_edge For detail read Dong&#39;s Efficient use of MPEG&#45;7 Edge Histogram descriptor." alt="" coords="181,63,309,105"/>
+<area shape="rect" id="node5" href="$classfeature__extractor.html#a72b821a4c52bfbfc0fc7772629520652" title="After calculating edges&#39;s strength Find the strongest edge velue." alt="" coords="181,129,309,170"/>
 <area shape="rect" id="node4" href="$feature__extractor_8h.html#a0b60cc07b94db22e66010751d8846649" title="multiply_scalars" alt="" coords="363,71,479,97"/>
 <area shape="rect" id="node6" href="$feature__extractor_8h.html#a2a3a94e0bb6be073e48cca829f1f98ad" title="maximum" alt="" coords="382,136,461,163"/>
 </map>

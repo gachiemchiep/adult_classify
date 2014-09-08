@@ -1,5 +1,5 @@
 <map id="MORPH_CLOSE_PARAMS" name="MORPH_CLOSE_PARAMS">
-<area shape="rect" id="node2" href="$classbg__remove.html#a051a0770c13d013808d0bd38bb3ad8c2" title="bg_remove::connect\l_skin_block" alt="" coords="243,5,383,46"/>
+<area shape="rect" id="node2" href="$classbg__remove.html#a051a0770c13d013808d0bd38bb3ad8c2" title="After removing non&#45;pixel blocks, connect blocks using close transformation." alt="" coords="243,5,383,46"/>
 <area shape="rect" id="node3" href="$classbg__remove.html#a916dce6dd98576a4e33744aee8dfe34b" title="bg_remove::remove_noise" alt="" coords="433,12,607,39"/>
 <area shape="rect" id="node4" href="$classbg__remove.html#ad3c9537300c6bd252dab399d84f6327c" title="bg_remove::run" alt="" coords="656,12,768,39"/>
 </map>

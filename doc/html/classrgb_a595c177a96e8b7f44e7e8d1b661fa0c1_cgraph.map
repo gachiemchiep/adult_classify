@@ -1,4 +1,4 @@
 <map id="rgb::init" name="rgb::init">
-<area shape="rect" id="node2" href="$classbg__remove.html#ab924a9a08b89c0cf8d0a1e5edbfa2dae" title="bg_remove::is_valid_img" alt="" coords="121,5,287,32"/>
-<area shape="rect" id="node3" href="$classrgb.html#af1367eeb061bfc0f67cc6f3986bc1aa6" title="rgb::is_skin_pixel" alt="" coords="143,56,265,83"/>
+<area shape="rect" id="node2" href="$classbg__remove.html#ab924a9a08b89c0cf8d0a1e5edbfa2dae" title="Is input image valid?" alt="" coords="121,5,287,32"/>
+<area shape="rect" id="node3" href="$classrgb.html#af1367eeb061bfc0f67cc6f3986bc1aa6" title="Is a skin pixel base on RGB rule." alt="" coords="143,56,265,83"/>
 </map>

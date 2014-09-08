@@ -93,6 +93,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>simply execute testing, result is printed into std::cerr  
+ <a href="classexecute__testing.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="execute__testing_8h_source.html">execute_testing.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for execute_testing:</div>
@@ -109,58 +112,83 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a24b2de1ef768d8f55d2f894bcfa4e379"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a24b2de1ef768d8f55d2f894bcfa4e379">~execute_testing</a> ()</td></tr>
 <tr class="separator:a24b2de1ef768d8f55d2f894bcfa4e379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95c302b8e0c9870c16b50114260e2619"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a95c302b8e0c9870c16b50114260e2619">set_adult_features_file</a> (std::string adult_features_file)</td></tr>
+<tr class="memdesc:a95c302b8e0c9870c16b50114260e2619"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set adult data's file location Each line of data's file has the following structure file_location,x[1],..x[256],x[257],..,x[341],x[342],..,x[366].  <a href="#a95c302b8e0c9870c16b50114260e2619">More...</a><br/></td></tr>
 <tr class="separator:a95c302b8e0c9870c16b50114260e2619"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82285435d4b4bb97869dda554fce2674"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a82285435d4b4bb97869dda554fce2674">get_adult_features_file</a> ()</td></tr>
+<tr class="memdesc:a82285435d4b4bb97869dda554fce2674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get adult data's file location.  <a href="#a82285435d4b4bb97869dda554fce2674">More...</a><br/></td></tr>
 <tr class="separator:a82285435d4b4bb97869dda554fce2674"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a265d3eeaaa66af4fb0c8de3b5c6763b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a265d3eeaaa66af4fb0c8de3b5c6763b3">set_non_adult_features_file</a> (std::string non_adult_features_file)</td></tr>
+<tr class="memdesc:a265d3eeaaa66af4fb0c8de3b5c6763b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set non-adult data's file location Each line of data's file has the following structure file_location,x[1],..x[256],x[257],..,x[341],x[342],..,x[366].  <a href="#a265d3eeaaa66af4fb0c8de3b5c6763b3">More...</a><br/></td></tr>
 <tr class="separator:a265d3eeaaa66af4fb0c8de3b5c6763b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a504090435688fca0401d9deeb246aed3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a504090435688fca0401d9deeb246aed3">get_non_adult_features_file</a> ()</td></tr>
+<tr class="memdesc:a504090435688fca0401d9deeb246aed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get non-adult data's file location.  <a href="#a504090435688fca0401d9deeb246aed3">More...</a><br/></td></tr>
 <tr class="separator:a504090435688fca0401d9deeb246aed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b8677535b30bedeff37cb233e3f1a9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a9b8677535b30bedeff37cb233e3f1a9f">set_method</a> (std::string method_name)</td></tr>
+<tr class="memdesc:a9b8677535b30bedeff37cb233e3f1a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set method Corresponding to method's name these following features will be used : scd, ehd, cd , all of scd-ehd-cd.  <a href="#a9b8677535b30bedeff37cb233e3f1a9f">More...</a><br/></td></tr>
 <tr class="separator:a9b8677535b30bedeff37cb233e3f1a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a800577477a6ce81581492356823c1da6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a800577477a6ce81581492356823c1da6">get_method</a> ()</td></tr>
+<tr class="memdesc:a800577477a6ce81581492356823c1da6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get method.  <a href="#a800577477a6ce81581492356823c1da6">More...</a><br/></td></tr>
 <tr class="separator:a800577477a6ce81581492356823c1da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c2779f5e47df999f50d9f023a412c7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f">evaluate_result</a> ()</td></tr>
+<tr class="memdesc:a2c2779f5e47df999f50d9f023a412c7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do testing, Print out result to std::cerr.  <a href="#a2c2779f5e47df999f50d9f023a412c7f">More...</a><br/></td></tr>
 <tr class="separator:a2c2779f5e47df999f50d9f023a412c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a75858c624596cc4e8e6c7212d2de20c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a75858c624596cc4e8e6c7212d2de20c8">get_data</a> ()</td></tr>
+<tr class="memdesc:a75858c624596cc4e8e6c7212d2de20c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse adult data, non-adult data from corresponding data file into process's flow.  <a href="#a75858c624596cc4e8e6c7212d2de20c8">More...</a><br/></td></tr>
 <tr class="separator:a75858c624596cc4e8e6c7212d2de20c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed894cdf3b8e47552563c761758d0e0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#aed894cdf3b8e47552563c761758d0e0f">shuffle_data</a> ()</td></tr>
+<tr class="memdesc:aed894cdf3b8e47552563c761758d0e0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuffle input data to get correct accuracy.  <a href="#aed894cdf3b8e47552563c761758d0e0f">More...</a><br/></td></tr>
 <tr class="separator:aed894cdf3b8e47552563c761758d0e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69284f95d9c42a9802dbd60800320681"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a69284f95d9c42a9802dbd60800320681">split_features</a> ()</td></tr>
+<tr class="memdesc:a69284f95d9c42a9802dbd60800320681"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split adult, non-adult data into test and learn set.  <a href="#a69284f95d9c42a9802dbd60800320681">More...</a><br/></td></tr>
 <tr class="separator:a69284f95d9c42a9802dbd60800320681"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13b829a2c3b4edb5b3cc4da5e34a2cda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a13b829a2c3b4edb5b3cc4da5e34a2cda">calculate_distances</a> ()</td></tr>
+<tr class="memdesc:a13b829a2c3b4edb5b3cc4da5e34a2cda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate all 3 types of distances and put into corresponding contain matrix.  <a href="#a13b829a2c3b4edb5b3cc4da5e34a2cda">More...</a><br/></td></tr>
 <tr class="separator:a13b829a2c3b4edb5b3cc4da5e34a2cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad58c531284ae495cebc03a8596894ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#aad58c531284ae495cebc03a8596894ee">calculate_ranks</a> ()</td></tr>
+<tr class="memdesc:aad58c531284ae495cebc03a8596894ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">From calculated distance matrixed, extract rank scores for each feature.  <a href="#aad58c531284ae495cebc03a8596894ee">More...</a><br/></td></tr>
 <tr class="separator:aad58c531284ae495cebc03a8596894ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa693a4fddf261c9e84d314ca40085379"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#aa693a4fddf261c9e84d314ca40085379">print_result</a> ()</td></tr>
+<tr class="memdesc:aa693a4fddf261c9e84d314ca40085379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count accurary base on rank scores.  <a href="#aa693a4fddf261c9e84d314ca40085379">More...</a><br/></td></tr>
 <tr class="separator:aa693a4fddf261c9e84d314ca40085379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3812b90c69b5f709bfb8faf2a4cb045d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a3812b90c69b5f709bfb8faf2a4cb045d">parse_features</a> (std::string features_file, std::vector&lt; std::string &gt; &amp;names, std::vector&lt; cv::Mat &gt; &amp;features)</td></tr>
+<tr class="memdesc:a3812b90c69b5f709bfb8faf2a4cb045d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse features from txt file into cv::Mat.  <a href="#a3812b90c69b5f709bfb8faf2a4cb045d">More...</a><br/></td></tr>
 <tr class="separator:a3812b90c69b5f709bfb8faf2a4cb045d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64fdfd054ec6a98923a6d832f4024aa9"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a64fdfd054ec6a98923a6d832f4024aa9">vector_to_mat</a> (std::vector&lt; std::string &gt; nums_vector)</td></tr>
+<tr class="memdesc:a64fdfd054ec6a98923a6d832f4024aa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert vector of integer contain string into cv::Mat.  <a href="#a64fdfd054ec6a98923a6d832f4024aa9">More...</a><br/></td></tr>
 <tr class="separator:a64fdfd054ec6a98923a6d832f4024aa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a971b712e41f779fed22aab6d3857b7c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfeatures__distances.html">features_distances</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a971b712e41f779fed22aab6d3857b7c0">feature_distances</a> (cv::Mat feature1, cv::Mat feature2)</td></tr>
+<tr class="memdesc:a971b712e41f779fed22aab6d3857b7c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">3 type of distances are calculated from parsed feature matrixes  <a href="#a971b712e41f779fed22aab6d3857b7c0">More...</a><br/></td></tr>
 <tr class="separator:a971b712e41f779fed22aab6d3857b7c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7893bc89734908c8842d5e4a9995c6c"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#ae7893bc89734908c8842d5e4a9995c6c">rank_from_distances</a> (cv::Mat distances, int max_rank)</td></tr>
+<tr class="memitem:ae7893bc89734908c8842d5e4a9995c6c"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#ae7893bc89734908c8842d5e4a9995c6c">rank_from_distances</a> (cv::Mat <a class="el" href="structdistances.html">distances</a>, int max_rank)</td></tr>
+<tr class="memdesc:ae7893bc89734908c8842d5e4a9995c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rank is calculated as following formula : <br/>
+ n-th lowest distance feature's rank score = number of nearest neighbor - n.  <a href="#ae7893bc89734908c8842d5e4a9995c6c">More...</a><br/></td></tr>
 <tr class="separator:ae7893bc89734908c8842d5e4a9995c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52d327e45c7a181839665cf7c3c5eab3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structnums__pair.html">nums_pair</a>&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a52d327e45c7a181839665cf7c3c5eab3">find_large_rank</a> (cv::Mat rank_mat, int max_count)</td></tr>
+<tr class="memdesc:a52d327e45c7a181839665cf7c3c5eab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find max_rank positions which have largest rank score value.  <a href="#a52d327e45c7a181839665cf7c3c5eab3">More...</a><br/></td></tr>
 <tr class="separator:a52d327e45c7a181839665cf7c3c5eab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aae991fe793087b1d8bead4708e3e0ce0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#aae991fe793087b1d8bead4708e3e0ce0">m_adult_features_file</a></td></tr>
+<tr class="memdesc:aae991fe793087b1d8bead4708e3e0ce0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input adult file_names,features file.  <a href="#aae991fe793087b1d8bead4708e3e0ce0">More...</a><br/></td></tr>
 <tr class="separator:aae991fe793087b1d8bead4708e3e0ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0443e25a04250f1ae59371d9b226eba3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a0443e25a04250f1ae59371d9b226eba3">m_non_adult_features_file</a></td></tr>
+<tr class="memdesc:a0443e25a04250f1ae59371d9b226eba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input non_adult file_names,features file.  <a href="#a0443e25a04250f1ae59371d9b226eba3">More...</a><br/></td></tr>
 <tr class="separator:a0443e25a04250f1ae59371d9b226eba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac18b05070018d7358425873f04e0999e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#ac18b05070018d7358425873f04e0999e">m_method</a></td></tr>
+<tr class="memdesc:ac18b05070018d7358425873f04e0999e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input testing method.  <a href="#ac18b05070018d7358425873f04e0999e">More...</a><br/></td></tr>
 <tr class="separator:ac18b05070018d7358425873f04e0999e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd74083201436d7aa6053f8c9d19789c"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#acd74083201436d7aa6053f8c9d19789c">m_distance</a></td></tr>
+<tr class="memdesc:acd74083201436d7aa6053f8c9d19789c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Feature distances matrix.  <a href="#acd74083201436d7aa6053f8c9d19789c">More...</a><br/></td></tr>
 <tr class="separator:acd74083201436d7aa6053f8c9d19789c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cbbd5df863300891bea287e0d27350d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structmatrixes.html">matrixes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a6cbbd5df863300891bea287e0d27350d">m_distances_matrixes</a></td></tr>
+<tr class="memdesc:a6cbbd5df863300891bea287e0d27350d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Feature distances matrixes (scd, ehd, cd)  <a href="#a6cbbd5df863300891bea287e0d27350d">More...</a><br/></td></tr>
 <tr class="separator:a6cbbd5df863300891bea287e0d27350d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94cfbfc47d2cc463a0035060e9076339"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structmatrixes.html">matrixes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a94cfbfc47d2cc463a0035060e9076339">m_ranks_matrixes</a></td></tr>
+<tr class="memdesc:a94cfbfc47d2cc463a0035060e9076339"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ranks(base on calculated distances) matrixes(scd, ehd, cd)  <a href="#a94cfbfc47d2cc463a0035060e9076339">More...</a><br/></td></tr>
 <tr class="separator:a94cfbfc47d2cc463a0035060e9076339"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae973c8418d9f87d8267740a49da010c4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::Mat &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#ae973c8418d9f87d8267740a49da010c4">m_adult_features</a></td></tr>
 <tr class="separator:ae973c8418d9f87d8267740a49da010c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,7 +199,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a62d2bf5276916a01df3315f23d059076"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::Mat &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexecute__testing.html#a62d2bf5276916a01df3315f23d059076">m_learn_features</a></td></tr>
 <tr class="separator:a62d2bf5276916a01df3315f23d059076"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>simply execute testing, result is printed into std::cerr </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="abd8f6e690a312542c078c3bae1a1b2dd"></a>
 <div class="memitem">
 <div class="memproto">
@@ -232,12 +262,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Calculate all 3 types of distances and put into corresponding contain matrix. </p>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a13b829a2c3b4edb5b3cc4da5e34a2cda_cgraph.png" border="0" usemap="#classexecute__testing_a13b829a2c3b4edb5b3cc4da5e34a2cda_cgraph" alt=""/></div>
 <map name="classexecute__testing_a13b829a2c3b4edb5b3cc4da5e34a2cda_cgraph" id="classexecute__testing_a13b829a2c3b4edb5b3cc4da5e34a2cda_cgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a971b712e41f779fed22aab6d3857b7c0" title="execute_testing::feature\l_distances" alt="" coords="229,5,392,46"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a971b712e41f779fed22aab6d3857b7c0" title="3 type of distances are calculated from parsed feature matrixes" alt="" coords="229,5,392,46"/></map>
 </div>
 </p>
 
@@ -246,7 +278,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a13b829a2c3b4edb5b3cc4da5e34a2cda_icgraph.png" border="0" usemap="#classexecute__testing_a13b829a2c3b4edb5b3cc4da5e34a2cda_icgraph" alt=""/></div>
 <map name="classexecute__testing_a13b829a2c3b4edb5b3cc4da5e34a2cda_icgraph" id="classexecute__testing_a13b829a2c3b4edb5b3cc4da5e34a2cda_icgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="execute_testing::evaluate\l_result" alt="" coords="229,5,400,46"/><area shape="rect" id="node3" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="448,12,499,39"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="Do testing, Print out result to std::cerr." alt="" coords="229,5,400,46"/><area shape="rect" id="node3" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="448,12,499,39"/></map>
 </div>
 </p>
 
@@ -272,6 +304,10 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>From calculated distance matrixed, extract rank scores for each feature. </p>
+<p><br/>
+ </p>
 <p>&lt; unsigned short </p>
 
 <p><div class="dynheader">
@@ -279,7 +315,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_aad58c531284ae495cebc03a8596894ee_cgraph.png" border="0" usemap="#classexecute__testing_aad58c531284ae495cebc03a8596894ee_cgraph" alt=""/></div>
 <map name="classexecute__testing_aad58c531284ae495cebc03a8596894ee_cgraph" id="classexecute__testing_aad58c531284ae495cebc03a8596894ee_cgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#ae7893bc89734908c8842d5e4a9995c6c" title="execute_testing::rank\l_from_distances" alt="" coords="229,5,376,46"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#ae7893bc89734908c8842d5e4a9995c6c" title="Rank is calculated as following formula : &#160;&#160;n&#45;th lowest distance feature&#39;s rank score = number of nea..." alt="" coords="229,5,376,46"/></map>
 </div>
 </p>
 
@@ -288,7 +324,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_aad58c531284ae495cebc03a8596894ee_icgraph.png" border="0" usemap="#classexecute__testing_aad58c531284ae495cebc03a8596894ee_icgraph" alt=""/></div>
 <map name="classexecute__testing_aad58c531284ae495cebc03a8596894ee_icgraph" id="classexecute__testing_aad58c531284ae495cebc03a8596894ee_icgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="execute_testing::evaluate\l_result" alt="" coords="229,5,400,46"/><area shape="rect" id="node3" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="448,12,499,39"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="Do testing, Print out result to std::cerr." alt="" coords="229,5,400,46"/><area shape="rect" id="node3" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="448,12,499,39"/></map>
 </div>
 </p>
 
@@ -307,12 +343,14 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Do testing, Print out result to std::cerr. </p>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a2c2779f5e47df999f50d9f023a412c7f_cgraph.png" border="0" usemap="#classexecute__testing_a2c2779f5e47df999f50d9f023a412c7f_cgraph" alt=""/></div>
 <map name="classexecute__testing_a2c2779f5e47df999f50d9f023a412c7f_cgraph" id="classexecute__testing_a2c2779f5e47df999f50d9f023a412c7f_cgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a75858c624596cc4e8e6c7212d2de20c8" title="execute_testing::get_data" alt="" coords="226,49,398,76"/><area shape="rect" id="node5" href="classexecute__testing.html#a69284f95d9c42a9802dbd60800320681" title="execute_testing::split\l_features" alt="" coords="239,137,385,178"/><area shape="rect" id="node9" href="classexecute__testing.html#a13b829a2c3b4edb5b3cc4da5e34a2cda" title="execute_testing::calculate\l_distances" alt="" coords="225,223,399,265"/><area shape="rect" id="node11" href="classexecute__testing.html#aad58c531284ae495cebc03a8596894ee" title="execute_testing::calculate\l_ranks" alt="" coords="225,289,399,330"/><area shape="rect" id="node13" href="classexecute__testing.html#aa693a4fddf261c9e84d314ca40085379" title="execute_testing::print\l_result" alt="" coords="239,354,385,395"/><area shape="rect" id="node3" href="classexecute__testing.html#a3812b90c69b5f709bfb8faf2a4cb045d" title="execute_testing::parse\l_features" alt="" coords="468,5,623,46"/><area shape="rect" id="node4" href="classexecute__testing.html#a64fdfd054ec6a98923a6d832f4024aa9" title="execute_testing::vector\l_to_mat" alt="" coords="691,5,850,46"/><area shape="rect" id="node6" href="classexecute__testing.html#aed894cdf3b8e47552563c761758d0e0f" title="execute_testing::shuffle_data" alt="" coords="449,71,642,97"/><area shape="rect" id="node7" href="utils_8h.html#aa396321a02f51982a18734c65580b1f0" title="split_vector" alt="" coords="501,121,590,148"/><area shape="rect" id="node8" href="utils_8h.html#a1bd6d01cdd4ef8b6be64290e4feb8d22" title="join_vector" alt="" coords="503,172,588,199"/><area shape="rect" id="node10" href="classexecute__testing.html#a971b712e41f779fed22aab6d3857b7c0" title="execute_testing::feature\l_distances" alt="" coords="464,223,627,265"/><area shape="rect" id="node12" href="classexecute__testing.html#ae7893bc89734908c8842d5e4a9995c6c" title="execute_testing::rank\l_from_distances" alt="" coords="472,289,619,330"/><area shape="rect" id="node14" href="classexecute__testing.html#a52d327e45c7a181839665cf7c3c5eab3" title="execute_testing::find\l_large_rank" alt="" coords="474,354,617,395"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a75858c624596cc4e8e6c7212d2de20c8" title="Parse adult data, non&#45;adult data from corresponding data file into process&#39;s flow." alt="" coords="226,49,398,76"/><area shape="rect" id="node5" href="classexecute__testing.html#a69284f95d9c42a9802dbd60800320681" title="Split adult, non&#45;adult data into test and learn set." alt="" coords="239,137,385,178"/><area shape="rect" id="node9" href="classexecute__testing.html#a13b829a2c3b4edb5b3cc4da5e34a2cda" title="Calculate all 3 types of distances and put into corresponding contain matrix." alt="" coords="225,223,399,265"/><area shape="rect" id="node11" href="classexecute__testing.html#aad58c531284ae495cebc03a8596894ee" title="From calculated distance matrixed, extract rank scores for each feature." alt="" coords="225,289,399,330"/><area shape="rect" id="node13" href="classexecute__testing.html#aa693a4fddf261c9e84d314ca40085379" title="Count accurary base on rank scores." alt="" coords="239,354,385,395"/><area shape="rect" id="node3" href="classexecute__testing.html#a3812b90c69b5f709bfb8faf2a4cb045d" title="Parse features from txt file into cv::Mat." alt="" coords="468,5,623,46"/><area shape="rect" id="node4" href="classexecute__testing.html#a64fdfd054ec6a98923a6d832f4024aa9" title="Convert vector of integer contain string into cv::Mat." alt="" coords="691,5,850,46"/><area shape="rect" id="node6" href="classexecute__testing.html#aed894cdf3b8e47552563c761758d0e0f" title="Shuffle input data to get correct accuracy." alt="" coords="449,71,642,97"/><area shape="rect" id="node7" href="utils_8h.html#aa396321a02f51982a18734c65580b1f0" title="Split vector into 2 part &#160;&#160;first part has testing_count element &#160;&#160;second part has the left &#160;..." alt="" coords="501,121,590,148"/><area shape="rect" id="node8" href="utils_8h.html#a1bd6d01cdd4ef8b6be64290e4feb8d22" title="Join 2 vectors into 1 vector." alt="" coords="503,172,588,199"/><area shape="rect" id="node10" href="classexecute__testing.html#a971b712e41f779fed22aab6d3857b7c0" title="3 type of distances are calculated from parsed feature matrixes" alt="" coords="464,223,627,265"/><area shape="rect" id="node12" href="classexecute__testing.html#ae7893bc89734908c8842d5e4a9995c6c" title="Rank is calculated as following formula : &#160;&#160;n&#45;th lowest distance feature&#39;s rank score = number of nea..." alt="" coords="472,289,619,330"/><area shape="rect" id="node14" href="classexecute__testing.html#a52d327e45c7a181839665cf7c3c5eab3" title="Find max_rank positions which have largest rank score value." alt="" coords="474,354,617,395"/></map>
 </div>
 </p>
 
@@ -359,12 +397,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>3 type of distances are calculated from parsed feature matrixes </p>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a971b712e41f779fed22aab6d3857b7c0_icgraph.png" border="0" usemap="#classexecute__testing_a971b712e41f779fed22aab6d3857b7c0_icgraph" alt=""/></div>
 <map name="classexecute__testing_a971b712e41f779fed22aab6d3857b7c0_icgraph" id="classexecute__testing_a971b712e41f779fed22aab6d3857b7c0_icgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a13b829a2c3b4edb5b3cc4da5e34a2cda" title="execute_testing::calculate\l_distances" alt="" coords="217,5,391,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="execute_testing::evaluate\l_result" alt="" coords="440,5,611,46"/><area shape="rect" id="node4" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="659,12,709,39"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a13b829a2c3b4edb5b3cc4da5e34a2cda" title="Calculate all 3 types of distances and put into corresponding contain matrix." alt="" coords="217,5,391,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="Do testing, Print out result to std::cerr." alt="" coords="440,5,611,46"/><area shape="rect" id="node4" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="659,12,709,39"/></map>
 </div>
 </p>
 
@@ -402,12 +442,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Find max_rank positions which have largest rank score value. </p>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a52d327e45c7a181839665cf7c3c5eab3_icgraph.png" border="0" usemap="#classexecute__testing_a52d327e45c7a181839665cf7c3c5eab3_icgraph" alt=""/></div>
 <map name="classexecute__testing_a52d327e45c7a181839665cf7c3c5eab3_icgraph" id="classexecute__testing_a52d327e45c7a181839665cf7c3c5eab3_icgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#aa693a4fddf261c9e84d314ca40085379" title="execute_testing::print\l_result" alt="" coords="197,5,344,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="execute_testing::evaluate\l_result" alt="" coords="392,5,563,46"/><area shape="rect" id="node4" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="611,12,661,39"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#aa693a4fddf261c9e84d314ca40085379" title="Count accurary base on rank scores." alt="" coords="197,5,344,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="Do testing, Print out result to std::cerr." alt="" coords="392,5,563,46"/><area shape="rect" id="node4" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="611,12,661,39"/></map>
 </div>
 </p>
 
@@ -425,6 +467,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get adult data's file location. </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -458,12 +502,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Parse adult data, non-adult data from corresponding data file into process's flow. </p>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a75858c624596cc4e8e6c7212d2de20c8_cgraph.png" border="0" usemap="#classexecute__testing_a75858c624596cc4e8e6c7212d2de20c8_cgraph" alt=""/></div>
 <map name="classexecute__testing_a75858c624596cc4e8e6c7212d2de20c8_cgraph" id="classexecute__testing_a75858c624596cc4e8e6c7212d2de20c8_cgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a3812b90c69b5f709bfb8faf2a4cb045d" title="execute_testing::parse\l_features" alt="" coords="227,5,381,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a64fdfd054ec6a98923a6d832f4024aa9" title="execute_testing::vector\l_to_mat" alt="" coords="430,5,589,46"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a3812b90c69b5f709bfb8faf2a4cb045d" title="Parse features from txt file into cv::Mat." alt="" coords="227,5,381,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a64fdfd054ec6a98923a6d832f4024aa9" title="Convert vector of integer contain string into cv::Mat." alt="" coords="430,5,589,46"/></map>
 </div>
 </p>
 
@@ -472,7 +518,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a75858c624596cc4e8e6c7212d2de20c8_icgraph.png" border="0" usemap="#classexecute__testing_a75858c624596cc4e8e6c7212d2de20c8_icgraph" alt=""/></div>
 <map name="classexecute__testing_a75858c624596cc4e8e6c7212d2de20c8_icgraph" id="classexecute__testing_a75858c624596cc4e8e6c7212d2de20c8_icgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="execute_testing::evaluate\l_result" alt="" coords="227,5,397,46"/><area shape="rect" id="node3" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="445,12,496,39"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="Do testing, Print out result to std::cerr." alt="" coords="227,5,397,46"/><area shape="rect" id="node3" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="445,12,496,39"/></map>
 </div>
 </p>
 
@@ -491,6 +537,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Get method. </p>
+
 </div>
 </div>
 <a class="anchor" id="a504090435688fca0401d9deeb246aed3"></a>
@@ -505,6 +553,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get non-adult data's file location. </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -555,12 +605,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Parse features from txt file into cv::Mat. </p>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a3812b90c69b5f709bfb8faf2a4cb045d_cgraph.png" border="0" usemap="#classexecute__testing_a3812b90c69b5f709bfb8faf2a4cb045d_cgraph" alt=""/></div>
 <map name="classexecute__testing_a3812b90c69b5f709bfb8faf2a4cb045d_cgraph" id="classexecute__testing_a3812b90c69b5f709bfb8faf2a4cb045d_cgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a64fdfd054ec6a98923a6d832f4024aa9" title="execute_testing::vector\l_to_mat" alt="" coords="209,5,367,46"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a64fdfd054ec6a98923a6d832f4024aa9" title="Convert vector of integer contain string into cv::Mat." alt="" coords="209,5,367,46"/></map>
 </div>
 </p>
 
@@ -569,7 +621,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a3812b90c69b5f709bfb8faf2a4cb045d_icgraph.png" border="0" usemap="#classexecute__testing_a3812b90c69b5f709bfb8faf2a4cb045d_icgraph" alt=""/></div>
 <map name="classexecute__testing_a3812b90c69b5f709bfb8faf2a4cb045d_icgraph" id="classexecute__testing_a3812b90c69b5f709bfb8faf2a4cb045d_icgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a75858c624596cc4e8e6c7212d2de20c8" title="execute_testing::get_data" alt="" coords="209,12,381,39"/><area shape="rect" id="node3" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="execute_testing::evaluate\l_result" alt="" coords="429,5,600,46"/><area shape="rect" id="node4" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="648,12,699,39"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a75858c624596cc4e8e6c7212d2de20c8" title="Parse adult data, non&#45;adult data from corresponding data file into process&#39;s flow." alt="" coords="209,12,381,39"/><area shape="rect" id="node3" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="Do testing, Print out result to std::cerr." alt="" coords="429,5,600,46"/><area shape="rect" id="node4" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="648,12,699,39"/></map>
 </div>
 </p>
 
@@ -596,12 +648,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Count accurary base on rank scores. </p>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_aa693a4fddf261c9e84d314ca40085379_cgraph.png" border="0" usemap="#classexecute__testing_aa693a4fddf261c9e84d314ca40085379_cgraph" alt=""/></div>
 <map name="classexecute__testing_aa693a4fddf261c9e84d314ca40085379_cgraph" id="classexecute__testing_aa693a4fddf261c9e84d314ca40085379_cgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a52d327e45c7a181839665cf7c3c5eab3" title="execute_testing::find\l_large_rank" alt="" coords="201,5,343,46"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a52d327e45c7a181839665cf7c3c5eab3" title="Find max_rank positions which have largest rank score value." alt="" coords="201,5,343,46"/></map>
 </div>
 </p>
 
@@ -610,7 +664,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_aa693a4fddf261c9e84d314ca40085379_icgraph.png" border="0" usemap="#classexecute__testing_aa693a4fddf261c9e84d314ca40085379_icgraph" alt=""/></div>
 <map name="classexecute__testing_aa693a4fddf261c9e84d314ca40085379_icgraph" id="classexecute__testing_aa693a4fddf261c9e84d314ca40085379_icgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="execute_testing::evaluate\l_result" alt="" coords="200,5,371,46"/><area shape="rect" id="node3" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="419,12,469,39"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="Do testing, Print out result to std::cerr." alt="" coords="200,5,371,46"/><area shape="rect" id="node3" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="419,12,469,39"/></map>
 </div>
 </p>
 
@@ -648,12 +702,15 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Rank is calculated as following formula : <br/>
+ n-th lowest distance feature's rank score = number of nearest neighbor - n. </p>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_ae7893bc89734908c8842d5e4a9995c6c_icgraph.png" border="0" usemap="#classexecute__testing_ae7893bc89734908c8842d5e4a9995c6c_icgraph" alt=""/></div>
 <map name="classexecute__testing_ae7893bc89734908c8842d5e4a9995c6c_icgraph" id="classexecute__testing_ae7893bc89734908c8842d5e4a9995c6c_icgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#aad58c531284ae495cebc03a8596894ee" title="execute_testing::calculate\l_ranks" alt="" coords="201,5,375,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="execute_testing::evaluate\l_result" alt="" coords="424,5,595,46"/><area shape="rect" id="node4" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="643,12,693,39"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#aad58c531284ae495cebc03a8596894ee" title="From calculated distance matrixed, extract rank scores for each feature." alt="" coords="201,5,375,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="Do testing, Print out result to std::cerr." alt="" coords="424,5,595,46"/><area shape="rect" id="node4" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="643,12,693,39"/></map>
 </div>
 </p>
 
@@ -672,6 +729,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Set adult data's file location Each line of data's file has the following structure file_location,x[1],..x[256],x[257],..,x[341],x[342],..,x[366]. </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -698,6 +757,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Set method Corresponding to method's name these following features will be used : scd, ehd, cd , all of scd-ehd-cd. </p>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -722,6 +783,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Set non-adult data's file location Each line of data's file has the following structure file_location,x[1],..x[256],x[257],..,x[341],x[342],..,x[366]. </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -755,12 +818,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Shuffle input data to get correct accuracy. </p>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_aed894cdf3b8e47552563c761758d0e0f_icgraph.png" border="0" usemap="#classexecute__testing_aed894cdf3b8e47552563c761758d0e0f_icgraph" alt=""/></div>
 <map name="classexecute__testing_aed894cdf3b8e47552563c761758d0e0f_icgraph" id="classexecute__testing_aed894cdf3b8e47552563c761758d0e0f_icgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a69284f95d9c42a9802dbd60800320681" title="execute_testing::split\l_features" alt="" coords="248,5,395,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="execute_testing::evaluate\l_result" alt="" coords="443,5,613,46"/><area shape="rect" id="node4" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="661,12,712,39"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a69284f95d9c42a9802dbd60800320681" title="Split adult, non&#45;adult data into test and learn set." alt="" coords="248,5,395,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="Do testing, Print out result to std::cerr." alt="" coords="443,5,613,46"/><area shape="rect" id="node4" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="661,12,712,39"/></map>
 </div>
 </p>
 
@@ -787,12 +852,15 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Split adult, non-adult data into test and learn set. </p>
+<p>The order is as follow Adult_1 : Adult_n non-adult_1 : non-adult_m </p>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a69284f95d9c42a9802dbd60800320681_cgraph.png" border="0" usemap="#classexecute__testing_a69284f95d9c42a9802dbd60800320681_cgraph" alt=""/></div>
 <map name="classexecute__testing_a69284f95d9c42a9802dbd60800320681_cgraph" id="classexecute__testing_a69284f95d9c42a9802dbd60800320681_cgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#aed894cdf3b8e47552563c761758d0e0f" title="execute_testing::shuffle_data" alt="" coords="201,5,394,32"/><area shape="rect" id="node3" href="utils_8h.html#aa396321a02f51982a18734c65580b1f0" title="split_vector" alt="" coords="253,56,342,83"/><area shape="rect" id="node4" href="utils_8h.html#a1bd6d01cdd4ef8b6be64290e4feb8d22" title="join_vector" alt="" coords="255,107,340,133"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#aed894cdf3b8e47552563c761758d0e0f" title="Shuffle input data to get correct accuracy." alt="" coords="201,5,394,32"/><area shape="rect" id="node3" href="utils_8h.html#aa396321a02f51982a18734c65580b1f0" title="Split vector into 2 part &#160;&#160;first part has testing_count element &#160;&#160;second part has the left &#160;..." alt="" coords="253,56,342,83"/><area shape="rect" id="node4" href="utils_8h.html#a1bd6d01cdd4ef8b6be64290e4feb8d22" title="Join 2 vectors into 1 vector." alt="" coords="255,107,340,133"/></map>
 </div>
 </p>
 
@@ -801,7 +869,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a69284f95d9c42a9802dbd60800320681_icgraph.png" border="0" usemap="#classexecute__testing_a69284f95d9c42a9802dbd60800320681_icgraph" alt=""/></div>
 <map name="classexecute__testing_a69284f95d9c42a9802dbd60800320681_icgraph" id="classexecute__testing_a69284f95d9c42a9802dbd60800320681_icgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="execute_testing::evaluate\l_result" alt="" coords="200,5,371,46"/><area shape="rect" id="node3" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="419,12,469,39"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="Do testing, Print out result to std::cerr." alt="" coords="200,5,371,46"/><area shape="rect" id="node3" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="419,12,469,39"/></map>
 </div>
 </p>
 
@@ -829,12 +897,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Convert vector of integer contain string into cv::Mat. </p>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classexecute__testing_a64fdfd054ec6a98923a6d832f4024aa9_icgraph.png" border="0" usemap="#classexecute__testing_a64fdfd054ec6a98923a6d832f4024aa9_icgraph" alt=""/></div>
 <map name="classexecute__testing_a64fdfd054ec6a98923a6d832f4024aa9_icgraph" id="classexecute__testing_a64fdfd054ec6a98923a6d832f4024aa9_icgraph">
-<area shape="rect" id="node2" href="classexecute__testing.html#a3812b90c69b5f709bfb8faf2a4cb045d" title="execute_testing::parse\l_features" alt="" coords="213,5,368,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a75858c624596cc4e8e6c7212d2de20c8" title="execute_testing::get_data" alt="" coords="417,12,589,39"/><area shape="rect" id="node4" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="execute_testing::evaluate\l_result" alt="" coords="637,5,808,46"/><area shape="rect" id="node5" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="856,12,907,39"/></map>
+<area shape="rect" id="node2" href="classexecute__testing.html#a3812b90c69b5f709bfb8faf2a4cb045d" title="Parse features from txt file into cv::Mat." alt="" coords="213,5,368,46"/><area shape="rect" id="node3" href="classexecute__testing.html#a75858c624596cc4e8e6c7212d2de20c8" title="Parse adult data, non&#45;adult data from corresponding data file into process&#39;s flow." alt="" coords="417,12,589,39"/><area shape="rect" id="node4" href="classexecute__testing.html#a2c2779f5e47df999f50d9f023a412c7f" title="Do testing, Print out result to std::cerr." alt="" coords="637,5,808,46"/><area shape="rect" id="node5" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="856,12,907,39"/></map>
 </div>
 </p>
 
@@ -879,6 +949,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Input adult file_names,features file. </p>
+
 </div>
 </div>
 <a class="anchor" id="acd74083201436d7aa6053f8c9d19789c"></a>
@@ -899,6 +971,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Feature distances matrix. </p>
+
 </div>
 </div>
 <a class="anchor" id="a6cbbd5df863300891bea287e0d27350d"></a>
@@ -918,6 +992,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Feature distances matrixes (scd, ehd, cd) </p>
 
 </div>
 </div>
@@ -959,6 +1035,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Input testing method. </p>
+
 </div>
 </div>
 <a class="anchor" id="a3564e0331aef4862c339f951210ba604"></a>
@@ -999,6 +1077,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Input non_adult file_names,features file. </p>
+
 </div>
 </div>
 <a class="anchor" id="a94cfbfc47d2cc463a0035060e9076339"></a>
@@ -1018,6 +1098,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Ranks(base on calculated distances) matrixes(scd, ehd, cd) </p>
 
 </div>
 </div>

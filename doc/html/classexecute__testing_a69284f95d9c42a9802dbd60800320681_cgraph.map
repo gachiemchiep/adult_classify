@@ -1,5 +1,5 @@
 <map id="execute_testing::split_features" name="execute_testing::split_features">
-<area shape="rect" id="node2" href="$classexecute__testing.html#aed894cdf3b8e47552563c761758d0e0f" title="execute_testing::shuffle_data" alt="" coords="201,5,394,32"/>
-<area shape="rect" id="node3" href="$utils_8h.html#aa396321a02f51982a18734c65580b1f0" title="split_vector" alt="" coords="253,56,342,83"/>
-<area shape="rect" id="node4" href="$utils_8h.html#a1bd6d01cdd4ef8b6be64290e4feb8d22" title="join_vector" alt="" coords="255,107,340,133"/>
+<area shape="rect" id="node2" href="$classexecute__testing.html#aed894cdf3b8e47552563c761758d0e0f" title="Shuffle input data to get correct accuracy." alt="" coords="201,5,394,32"/>
+<area shape="rect" id="node3" href="$utils_8h.html#aa396321a02f51982a18734c65580b1f0" title="Split vector into 2 part &#160;&#160;first part has testing_count element &#160;&#160;second part has the left &#160;..." alt="" coords="253,56,342,83"/>
+<area shape="rect" id="node4" href="$utils_8h.html#a1bd6d01cdd4ef8b6be64290e4feb8d22" title="Join 2 vectors into 1 vector." alt="" coords="255,107,340,133"/>
 </map>

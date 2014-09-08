@@ -1,4 +1,4 @@
 <map id="feature_extractor::edges_streng" name="feature_extractor::edges_streng">
-<area shape="rect" id="node2" href="$classfeature__extractor.html#a74646c943b032b1625a8f70d7903ece7" title="feature_extractor::\lsplit_rect" alt="" coords="181,5,309,46"/>
+<area shape="rect" id="node2" href="$classfeature__extractor.html#a74646c943b032b1625a8f70d7903ece7" title="Divide input rect into smaller part for x axis : divide into x_part_counts for y axis : divide into y..." alt="" coords="181,5,309,46"/>
 <area shape="rect" id="node3" href="$feature__extractor_8h.html#a0b60cc07b94db22e66010751d8846649" title="multiply_scalars" alt="" coords="187,71,303,97"/>
 </map>

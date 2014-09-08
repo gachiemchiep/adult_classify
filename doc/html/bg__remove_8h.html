@@ -122,6 +122,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbg__remove.html">bg_remove</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove non-skin pixels from image.  <a href="classbg__remove.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrgb.html">rgb</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,6 +140,11 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a1b693534cf4c588f77a0b8ae82135863"><td class="memItemLeft" align="right" valign="top">const cv::Size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bg__remove_8h.html#a1b693534cf4c588f77a0b8ae82135863">BLOCK_SIZE</a> (8, 8)</td></tr>
+<tr class="memdesc:a1b693534cf4c588f77a0b8ae82135863"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="bg__remove_8h.html">bg_remove.h</a> Created on: Aug 21, 2014 Author: gachiemchiep Description : Remove non-skin pixels from image <br/>
+ Using Francesca's skin segmantation using multiple thresholding <br/>
+ Using Khan's "static filtered skin detection" <br/>
+ skin pixel rule: <br/>
+ RGB: R &gt; 95, G &gt; 40, B &gt; 20, max(B, G, R) - min(B, G, R) &gt; 15 |R - G| &gt; 15, R &gt; G, R &gt; B YCrCb: Cr &gt;= 77, Cb &lt;= 127, Cr &gt;=133, Cr &lt;= 173 HSV(H=[0,360]): 0&lt;H&lt;25, 335 &lt; H &lt; 360, 0.2 &lt; S &lt;0.6, 40 &lt; V HSL: 0&lt;h&lt;50, 0.1&lt;s&lt;0.9 HSI: I1 = (R+G+B)/3, I2=(R-B)/2, I3=(2G-R-B)/4 I=I1, S=square_root((I2)^2+(I3)^2),H=tan^-1(I3/I2) I&gt;40 if 13&lt;S&lt;110 : 0(degree)&lt;H&lt;28, 332&lt;H&lt;360 if 13&lt;S&lt;75: 309&lt;H&lt;331 normalized rgb: r/g&gt;1.185, (r*b)/(r+g+b)^2&gt;0.107,(r*g)/(r+g+b)^2&gt;0.112 r=R/(R+G+B), g=G/(R+G+B), b=B/(R+G+B)  <a href="#a1b693534cf4c588f77a0b8ae82135863">More...</a><br/></td></tr>
 <tr class="separator:a1b693534cf4c588f77a0b8ae82135863"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afea45fdae62aecd2d989f99acb317e8b"><td class="memItemLeft" align="right" valign="top">const cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bg__remove_8h.html#afea45fdae62aecd2d989f99acb317e8b">MORPH_CLOSE_PARAMS</a> (cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3), cv::Point(1, 1)))</td></tr>
 <tr class="separator:afea45fdae62aecd2d989f99acb317e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -173,12 +179,18 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p><a class="el" href="bg__remove_8h.html">bg_remove.h</a> Created on: Aug 21, 2014 Author: gachiemchiep Description : Remove non-skin pixels from image <br/>
+ Using Francesca's skin segmantation using multiple thresholding <br/>
+ Using Khan's "static filtered skin detection" <br/>
+ skin pixel rule: <br/>
+ RGB: R &gt; 95, G &gt; 40, B &gt; 20, max(B, G, R) - min(B, G, R) &gt; 15 |R - G| &gt; 15, R &gt; G, R &gt; B YCrCb: Cr &gt;= 77, Cb &lt;= 127, Cr &gt;=133, Cr &lt;= 173 HSV(H=[0,360]): 0&lt;H&lt;25, 335 &lt; H &lt; 360, 0.2 &lt; S &lt;0.6, 40 &lt; V HSL: 0&lt;h&lt;50, 0.1&lt;s&lt;0.9 HSI: I1 = (R+G+B)/3, I2=(R-B)/2, I3=(2G-R-B)/4 I=I1, S=square_root((I2)^2+(I3)^2),H=tan^-1(I3/I2) I&gt;40 if 13&lt;S&lt;110 : 0(degree)&lt;H&lt;28, 332&lt;H&lt;360 if 13&lt;S&lt;75: 309&lt;H&lt;331 normalized rgb: r/g&gt;1.185, (r*b)/(r+g+b)^2&gt;0.107,(r*g)/(r+g+b)^2&gt;0.112 r=R/(R+G+B), g=G/(R+G+B), b=B/(R+G+B) </p>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="bg__remove_8h_a1b693534cf4c588f77a0b8ae82135863_icgraph.png" border="0" usemap="#bg__remove_8h_a1b693534cf4c588f77a0b8ae82135863_icgraph" alt=""/></div>
 <map name="bg__remove_8h_a1b693534cf4c588f77a0b8ae82135863_icgraph" id="bg__remove_8h_a1b693534cf4c588f77a0b8ae82135863_icgraph">
-<area shape="rect" id="node2" href="classbg__remove.html#acd887517c05fed59446921cf14285ed9" title="bg_remove::find_skin\l_block" alt="" coords="341,5,488,46"/><area shape="rect" id="node5" href="classbg__remove.html#a58a35c1e8a45db50421d49d3c5924b3f" title="bg_remove::is_skin\l_block" alt="" coords="158,34,293,75"/><area shape="rect" id="node3" href="classbg__remove.html#a916dce6dd98576a4e33744aee8dfe34b" title="bg_remove::remove_noise" alt="" coords="537,12,711,39"/><area shape="rect" id="node4" href="classbg__remove.html#ad3c9537300c6bd252dab399d84f6327c" title="bg_remove::run" alt="" coords="760,12,872,39"/></map>
+<area shape="rect" id="node2" href="classbg__remove.html#acd887517c05fed59446921cf14285ed9" title="Find skin pixel blocks." alt="" coords="341,5,488,46"/><area shape="rect" id="node5" href="classbg__remove.html#a58a35c1e8a45db50421d49d3c5924b3f" title="Whether skin pixel blocks really a skin block Condition: have more than 25% region of block is skin p..." alt="" coords="158,34,293,75"/><area shape="rect" id="node3" href="classbg__remove.html#a916dce6dd98576a4e33744aee8dfe34b" title="bg_remove::remove_noise" alt="" coords="537,12,711,39"/><area shape="rect" id="node4" href="classbg__remove.html#ad3c9537300c6bd252dab399d84f6327c" title="bg_remove::run" alt="" coords="760,12,872,39"/></map>
 </div>
 </p>
 
@@ -203,7 +215,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="bg__remove_8h_afea45fdae62aecd2d989f99acb317e8b_icgraph.png" border="0" usemap="#bg__remove_8h_afea45fdae62aecd2d989f99acb317e8b_icgraph" alt=""/></div>
 <map name="bg__remove_8h_afea45fdae62aecd2d989f99acb317e8b_icgraph" id="bg__remove_8h_afea45fdae62aecd2d989f99acb317e8b_icgraph">
-<area shape="rect" id="node2" href="classbg__remove.html#a051a0770c13d013808d0bd38bb3ad8c2" title="bg_remove::connect\l_skin_block" alt="" coords="243,5,383,46"/><area shape="rect" id="node3" href="classbg__remove.html#a916dce6dd98576a4e33744aee8dfe34b" title="bg_remove::remove_noise" alt="" coords="433,12,607,39"/><area shape="rect" id="node4" href="classbg__remove.html#ad3c9537300c6bd252dab399d84f6327c" title="bg_remove::run" alt="" coords="656,12,768,39"/></map>
+<area shape="rect" id="node2" href="classbg__remove.html#a051a0770c13d013808d0bd38bb3ad8c2" title="After removing non&#45;pixel blocks, connect blocks using close transformation." alt="" coords="243,5,383,46"/><area shape="rect" id="node3" href="classbg__remove.html#a916dce6dd98576a4e33744aee8dfe34b" title="bg_remove::remove_noise" alt="" coords="433,12,607,39"/><area shape="rect" id="node4" href="classbg__remove.html#ad3c9537300c6bd252dab399d84f6327c" title="bg_remove::run" alt="" coords="656,12,768,39"/></map>
 </div>
 </p>
 

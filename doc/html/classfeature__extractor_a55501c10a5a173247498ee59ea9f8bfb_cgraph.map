@@ -1,14 +1,14 @@
 <map id="feature_extractor::calculate_feature" name="feature_extractor::calculate_feature">
-<area shape="rect" id="node2" href="$classfeature__extractor.html#aed0a54072caef6342fc82be67a350466" title="feature_extractor::\lis_valid" alt="" coords="181,70,309,111"/>
-<area shape="rect" id="node5" href="$classfeature__extractor.html#a07cccf942723452789560ea49391c833" title="feature_extractor::\lcalculate_scd" alt="" coords="181,135,309,177"/>
-<area shape="rect" id="node6" href="$classfeature__extractor.html#af050c2cb5ba3ed3541ec3c981b969a5a" title="feature_extractor::\lcalculate_ehd" alt="" coords="181,201,309,242"/>
-<area shape="rect" id="node12" href="$classfeature__extractor.html#a2e8bd4efa8557a81910ef8e44bac0452" title="feature_extractor::\lcalculate_cd" alt="" coords="181,310,309,351"/>
-<area shape="rect" id="node3" href="$classfeature__extractor.html#a906c8bac9f4476d412f73fef4677561a" title="feature_extractor::\lcheck_img_path" alt="" coords="357,5,485,46"/>
-<area shape="rect" id="node4" href="$classfeature__extractor.html#a700c3730ba649ad37e3cd536183c4922" title="feature_extractor::\lcheck_method" alt="" coords="357,70,485,111"/>
-<area shape="rect" id="node7" href="$classfeature__extractor.html#a74646c943b032b1625a8f70d7903ece7" title="feature_extractor::\lsplit_rect" alt="" coords="533,259,661,301"/>
-<area shape="rect" id="node8" href="$classfeature__extractor.html#af5cc40f772409dbc03fe4b0fc5a0c3db" title="feature_extractor::\ledges_streng" alt="" coords="357,201,485,242"/>
-<area shape="rect" id="node10" href="$classfeature__extractor.html#a72b821a4c52bfbfc0fc7772629520652" title="feature_extractor::\lstrongest_edge" alt="" coords="357,135,485,177"/>
+<area shape="rect" id="node2" href="$classfeature__extractor.html#aed0a54072caef6342fc82be67a350466" title="Check whether input method and input image valid." alt="" coords="181,70,309,111"/>
+<area shape="rect" id="node5" href="$classfeature__extractor.html#a07cccf942723452789560ea49391c833" title="Calculate Scalable color descriptor opencv hsv is [0&#45;179],[0&#45;255],[0&#45;255] for 8bit image Algorithm sc..." alt="" coords="181,135,309,177"/>
+<area shape="rect" id="node6" href="$classfeature__extractor.html#af050c2cb5ba3ed3541ec3c981b969a5a" title="Calculate ehd features descriptor 16x5(local) + 1x5(global) = 85 dimension Algorithm image &#45;&gt; 4x4 sub..." alt="" coords="181,201,309,242"/>
+<area shape="rect" id="node12" href="$classfeature__extractor.html#a2e8bd4efa8557a81910ef8e44bac0452" title="Calculate compactness descriptor(CD) algorithm divide image into 1 , 4 , 16 sub_image then count the ..." alt="" coords="181,310,309,351"/>
+<area shape="rect" id="node3" href="$classfeature__extractor.html#a906c8bac9f4476d412f73fef4677561a" title="Check whether input image valid." alt="" coords="357,5,485,46"/>
+<area shape="rect" id="node4" href="$classfeature__extractor.html#a700c3730ba649ad37e3cd536183c4922" title="Check whether input method valid." alt="" coords="357,70,485,111"/>
+<area shape="rect" id="node7" href="$classfeature__extractor.html#a74646c943b032b1625a8f70d7903ece7" title="Divide input rect into smaller part for x axis : divide into x_part_counts for y axis : divide into y..." alt="" coords="533,259,661,301"/>
+<area shape="rect" id="node8" href="$classfeature__extractor.html#af5cc40f772409dbc03fe4b0fc5a0c3db" title="Calculate edge streng for ehd feature descriptors edge type is ver, hor, dia45, dia135, nond_edge For detail read Dong&#39;s Efficient use of MPEG&#45;7 Edge Histogram descriptor." alt="" coords="357,201,485,242"/>
+<area shape="rect" id="node10" href="$classfeature__extractor.html#a72b821a4c52bfbfc0fc7772629520652" title="After calculating edges&#39;s strength Find the strongest edge velue." alt="" coords="357,135,485,177"/>
 <area shape="rect" id="node9" href="$feature__extractor_8h.html#a0b60cc07b94db22e66010751d8846649" title="multiply_scalars" alt="" coords="539,208,655,235"/>
 <area shape="rect" id="node11" href="$feature__extractor_8h.html#a2a3a94e0bb6be073e48cca829f1f98ad" title="maximum" alt="" coords="558,143,637,169"/>
-<area shape="rect" id="node13" href="$classfeature__extractor.html#ac580338d56b489b11b5673a52768ab0e" title="feature_extractor::\lis_skin_pixel" alt="" coords="357,369,485,410"/>
+<area shape="rect" id="node13" href="$classfeature__extractor.html#ac580338d56b489b11b5673a52768ab0e" title="Is input pixel a skin pixel Using simple RGB rule." alt="" coords="357,369,485,410"/>
 </map>

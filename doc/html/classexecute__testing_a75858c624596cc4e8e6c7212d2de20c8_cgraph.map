@@ -1,4 +1,4 @@
 <map id="execute_testing::get_data" name="execute_testing::get_data">
-<area shape="rect" id="node2" href="$classexecute__testing.html#a3812b90c69b5f709bfb8faf2a4cb045d" title="execute_testing::parse\l_features" alt="" coords="227,5,381,46"/>
-<area shape="rect" id="node3" href="$classexecute__testing.html#a64fdfd054ec6a98923a6d832f4024aa9" title="execute_testing::vector\l_to_mat" alt="" coords="430,5,589,46"/>
+<area shape="rect" id="node2" href="$classexecute__testing.html#a3812b90c69b5f709bfb8faf2a4cb045d" title="Parse features from txt file into cv::Mat." alt="" coords="227,5,381,46"/>
+<area shape="rect" id="node3" href="$classexecute__testing.html#a64fdfd054ec6a98923a6d832f4024aa9" title="Convert vector of integer contain string into cv::Mat." alt="" coords="430,5,589,46"/>
 </map>

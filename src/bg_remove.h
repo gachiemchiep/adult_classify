@@ -1,12 +1,16 @@
-/*
- * bg_remove.h
+/**
+ *  @class bg_remove
+ *  Remove non-skin pixels from image
  *
+*/
+/**
+ *  bg_remove.h
  *  Created on: Aug 21, 2014
- *      Author: gachiemchiep
- *      Description : Remove non-skin pixels from image
- *					Using Francesca's skin segmantation using multiple thresholding
- *					Using Khan's "static filtered skin detection"
- *skin pixel rule:
+ *  Author: gachiemchiep
+ *  Description : Remove non-skin pixels from image \n
+ *			 	  Using Francesca's skin segmantation using multiple thresholding \n
+ *				  Using Khan's "static filtered skin detection" \n
+ *  skin pixel rule: \n
  *			RGB:	R > 95, G > 40, B > 20,
  *					max(B, G, R) - min(B, G, R) > 15
  *					|R - G| > 15, R > G, R > B
@@ -18,7 +22,7 @@
  *				I>40
  *				if 13<S<110 : 0(degree)<H<28, 332<H<360
  *				if 13<S<75: 309<H<331
- *		normalized rgb: r/g>1.185, (r*b)/(r+g+b)^2>0.107,(r*g)/(r+g+b)^2>0.112
+ *		    normalized rgb: r/g>1.185, (r*b)/(r+g+b)^2>0.107,(r*g)/(r+g+b)^2>0.112
  *						r=R/(R+G+B), g=G/(R+G+B), b=B/(R+G+B)
  */
 
@@ -52,17 +56,15 @@ public:
 	void show_bin(int i);
 	cv::Mat get_bin(int i);
 protected:
-	std::string m_img_path;
-	std::string m_method = "HSI";
-//	std::vector<std::string> v_methods { "RGB", "YCrCb", "HSV", "HLS",
-//			"RGB_norm", "HSI" };
-	cv::Mat m_img_mat;
-	cv::Mat m_crop_mat;
-	cv::Mat m_crop_bin;
+	std::string m_img_path; /**< Input image path for background removal*/
+	std::string m_method; /**< Method for background removal*/
+	cv::Mat m_img_mat; /**< Input image matrix*/
+	cv::Mat m_crop_mat; /**< Background removed image matrix*/
+	cv::Mat m_crop_bin; /**< Background removed image binary matrix*/
 	cv::Rect m_roi;
 	bool is_valid_img();
 private:
-	bool is_valid_method();
+	bool is_valid_method(); /**< Is method valid*/
 	void remove_noise(); // change m_crop_mat into m_crop_bin then remove noise
 	void find_skin_block(); // divide crop bin into 32x32 and find skin contains block
 	bool is_skin_block(cv::Rect block_r, cv::Mat &m_cop_bin_fixed); // is that block a skin-block
@@ -75,6 +77,9 @@ private:
 
 #endif /* BG_REMOVE_H_ */
 
+/**
+ * @class rgb
+ */
 class rgb: public bg_remove {
 public:
 	virtual void init();
@@ -82,6 +87,9 @@ private:
 	bool is_skin_pixel(cv::Vec3b bgr);
 };
 
+/**
+ * @class ycrcb
+ */
 class ycrcb: public bg_remove {
 public:
 	virtual void init();
@@ -89,6 +97,9 @@ private:
 	bool is_skin_pixel(cv::Vec3b ycrcb);
 };
 
+/**
+ * @class hsv
+ */
 class hsv: public bg_remove {
 public:
 	virtual void init();
@@ -96,6 +107,9 @@ private:
 	bool is_skin_pixel(cv::Vec3b hsv1);
 };
 
+/**
+ * @class hls
+ */
 class hls: public bg_remove {
 public:
 	virtual void init();
@@ -103,6 +117,9 @@ private:
 	bool is_skin_pixel(cv::Vec3b hls);
 };
 
+/**
+ * @class rgb_norm
+ */
 class rgb_norm: public bg_remove {
 public:
 	virtual void init();
@@ -110,6 +127,9 @@ private:
 	bool is_skin_pixel(cv::Vec3b ycrcb);
 };
 
+/**
+ * @class hsi
+ */
 class hsi: public bg_remove {
 public:
 	virtual void init();

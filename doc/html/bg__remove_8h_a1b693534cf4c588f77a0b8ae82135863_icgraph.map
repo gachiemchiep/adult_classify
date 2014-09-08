@@ -1,6 +1,6 @@
 <map id="BLOCK_SIZE" name="BLOCK_SIZE">
-<area shape="rect" id="node2" href="$classbg__remove.html#acd887517c05fed59446921cf14285ed9" title="bg_remove::find_skin\l_block" alt="" coords="341,5,488,46"/>
-<area shape="rect" id="node5" href="$classbg__remove.html#a58a35c1e8a45db50421d49d3c5924b3f" title="bg_remove::is_skin\l_block" alt="" coords="158,34,293,75"/>
+<area shape="rect" id="node2" href="$classbg__remove.html#acd887517c05fed59446921cf14285ed9" title="Find skin pixel blocks." alt="" coords="341,5,488,46"/>
+<area shape="rect" id="node5" href="$classbg__remove.html#a58a35c1e8a45db50421d49d3c5924b3f" title="Whether skin pixel blocks really a skin block Condition: have more than 25% region of block is skin p..." alt="" coords="158,34,293,75"/>
 <area shape="rect" id="node3" href="$classbg__remove.html#a916dce6dd98576a4e33744aee8dfe34b" title="bg_remove::remove_noise" alt="" coords="537,12,711,39"/>
 <area shape="rect" id="node4" href="$classbg__remove.html#ad3c9537300c6bd252dab399d84f6327c" title="bg_remove::run" alt="" coords="760,12,872,39"/>
 </map>

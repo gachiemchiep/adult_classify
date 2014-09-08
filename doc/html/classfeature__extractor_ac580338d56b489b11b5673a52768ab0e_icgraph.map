@@ -1,5 +1,5 @@
 <map id="feature_extractor::is_skin_pixel" name="feature_extractor::is_skin_pixel">
-<area shape="rect" id="node2" href="$classfeature__extractor.html#a2e8bd4efa8557a81910ef8e44bac0452" title="feature_extractor::\lcalculate_cd" alt="" coords="181,5,309,46"/>
-<area shape="rect" id="node3" href="$classfeature__extractor.html#a55501c10a5a173247498ee59ea9f8bfb" title="feature_extractor::\lcalculate_feature" alt="" coords="357,5,485,46"/>
+<area shape="rect" id="node2" href="$classfeature__extractor.html#a2e8bd4efa8557a81910ef8e44bac0452" title="Calculate compactness descriptor(CD) algorithm divide image into 1 , 4 , 16 sub_image then count the ..." alt="" coords="181,5,309,46"/>
+<area shape="rect" id="node3" href="$classfeature__extractor.html#a55501c10a5a173247498ee59ea9f8bfb" title="Calculate feature." alt="" coords="357,5,485,46"/>
 <area shape="rect" id="node4" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="533,12,584,39"/>
 </map>

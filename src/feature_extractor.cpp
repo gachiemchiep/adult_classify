@@ -15,26 +15,44 @@ feature_extractor::~feature_extractor() {
 	// TODO Auto-generated destructor stub
 }
 
+/**
+ * Set image path for feature extraction
+ */
 void feature_extractor::set_img_path(std::string img_path) {
 	m_img = img_path;
 }
 
+/**
+ * Get image path for feature extraction
+ */
 std::string feature_extractor::get_img_path() {
 	return m_img;
 }
 
+/**
+ * Set method for feature extraction
+ */
 void feature_extractor::set_method(std::string method) {
 	m_method = method;
 }
 
+/**
+ * Get method for feature extraction
+ */
 std::string feature_extractor::get_method() {
 	return m_method;
 }
 
+/**
+ * Get extracted feature
+ */
 cv::Mat feature_extractor::get_feature() {
 	return m_feature;
 }
 
+/**
+ * Check whether input image valid
+ */
 bool feature_extractor::check_img_path() {
 	cv::Mat tmp = cv::imread(m_img, 1);
 	if (tmp.data != NULL) {
@@ -44,6 +62,9 @@ bool feature_extractor::check_img_path() {
 	}
 }
 
+/**
+ * Check whether input method valid
+ */
 bool feature_extractor::check_method() {
 	if (std::find(EXTRACT_FEATURE_METHODS.begin(), EXTRACT_FEATURE_METHODS.end(), m_method) == EXTRACT_FEATURE_METHODS.end()) {
 		std::cerr << m_method << " is not valid. \n";
@@ -55,6 +76,9 @@ bool feature_extractor::check_method() {
 	}
 }
 
+/**
+ * Check whether input method and input image valid
+ */
 bool feature_extractor::is_valid() {
 	if ((check_img_path()) && (check_method())) {
 		std::cerr << m_img << " " << m_method << " is usable \n";
@@ -65,6 +89,9 @@ bool feature_extractor::is_valid() {
 	}
 }
 
+/**
+ * Calculate feature
+ */
 void feature_extractor::calculate_feature() {
 	if (is_valid()) {
 		// read m_img as bgr matrix
@@ -92,7 +119,7 @@ void feature_extractor::calculate_feature() {
 	}
 }
 
-/*
+/**
  * Calculate Scalable color descriptor
  * opencv hsv is [0-179],[0-255],[0-255] for 8bit image
  * Algorithm
@@ -129,7 +156,7 @@ cv::Mat feature_extractor::calculate_scd(cv::Mat &frame) {
 	return scd;
 }
 
-/*
+/**
  * Calculate ehd features descriptor
  * 16x5(local) + 1x5(global) = 85 dimension
  * Algorithm
@@ -220,7 +247,7 @@ cv::Mat feature_extractor::calculate_ehd(cv::Mat &frame) {
 	return ehd;
 }
 
-/*
+/**
  * Calculate edge streng for ehd feature descriptors
  * edge type is ver, hor, dia45, dia135, nond_edge
  * For detail read Dong's Efficient use of MPEG-7 Edge
@@ -254,6 +281,10 @@ std::vector<float> feature_extractor::edges_streng(cv::Mat &frame_gray,
 	return edges_streng;
 }
 
+/**
+ * After calculating edges's strength
+ * Find the strongest edge velue
+ */
 float feature_extractor::strongest_edge(std::vector<float>& edges_streng, float threshold) {
 	float highest_edge = maximum(edges_streng);
 	if (highest_edge > threshold) {
@@ -263,7 +294,7 @@ float feature_extractor::strongest_edge(std::vector<float>& edges_streng, float 
 	}
 }
 
-/*
+/**
  * Divide input rect into smaller part
  * for x axis : divide into x_part_counts
  * for y axis : divide into y_part_counts
@@ -299,7 +330,7 @@ std::vector<cv::Rect> feature_extractor::split_rect(cv::Rect rect,
 
 	return smaller_rects;
 }
-/*
+/**
  * Calculate compactness descriptor(CD)
  * algorithm
  * divide image into 1 , 4 , 16 sub_image
@@ -363,7 +394,7 @@ cv::Mat feature_extractor::calculate_cd(cv::Mat &frame) {
 
 
 
-/*
+/**
  * Is input pixel a skin pixel
  * Using simple RGB rule
  */
@@ -387,11 +418,18 @@ bool feature_extractor::is_skin_pixel(cv::Vec3b bgr) {
 	}
 }
 
+/**
+ * Save extracted feature into result_file as raw txt file
+ * Delimiter is ","
+ */
 void feature_extractor::save_result(std::string result_file) {
 	save_feature(m_feature, m_img, result_file);
 }
 
-// Save image_path + feature's detail into result_file
+/**
+ * Save image_path, extracted feature into result_file as raw txt file
+ * For example : image1.jpg,1,2,4,233,...
+ */
 void feature_extractor::save_feature(cv::Mat &feature, std::string file_name, std::string result_file) {
 	if (feature.rows != 1) {
 		std::cerr << "Not a valid feature \n";

@@ -1,7 +1,7 @@
 <map id="feature_extractor::split_rect" name="feature_extractor::split_rect">
-<area shape="rect" id="node2" href="$classfeature__extractor.html#af050c2cb5ba3ed3541ec3c981b969a5a" title="feature_extractor::\lcalculate_ehd" alt="" coords="357,16,485,57"/>
-<area shape="rect" id="node5" href="$classfeature__extractor.html#af5cc40f772409dbc03fe4b0fc5a0c3db" title="feature_extractor::\ledges_streng" alt="" coords="181,22,309,64"/>
-<area shape="rect" id="node6" href="$classfeature__extractor.html#a2e8bd4efa8557a81910ef8e44bac0452" title="feature_extractor::\lcalculate_cd" alt="" coords="357,81,485,122"/>
-<area shape="rect" id="node3" href="$classfeature__extractor.html#a55501c10a5a173247498ee59ea9f8bfb" title="feature_extractor::\lcalculate_feature" alt="" coords="533,49,661,90"/>
+<area shape="rect" id="node2" href="$classfeature__extractor.html#af050c2cb5ba3ed3541ec3c981b969a5a" title="Calculate ehd features descriptor 16x5(local) + 1x5(global) = 85 dimension Algorithm image &#45;&gt; 4x4 sub..." alt="" coords="357,16,485,57"/>
+<area shape="rect" id="node5" href="$classfeature__extractor.html#af5cc40f772409dbc03fe4b0fc5a0c3db" title="Calculate edge streng for ehd feature descriptors edge type is ver, hor, dia45, dia135, nond_edge For detail read Dong&#39;s Efficient use of MPEG&#45;7 Edge Histogram descriptor." alt="" coords="181,22,309,64"/>
+<area shape="rect" id="node6" href="$classfeature__extractor.html#a2e8bd4efa8557a81910ef8e44bac0452" title="Calculate compactness descriptor(CD) algorithm divide image into 1 , 4 , 16 sub_image then count the ..." alt="" coords="357,81,485,122"/>
+<area shape="rect" id="node3" href="$classfeature__extractor.html#a55501c10a5a173247498ee59ea9f8bfb" title="Calculate feature." alt="" coords="533,49,661,90"/>
 <area shape="rect" id="node4" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="709,56,760,83"/>
 </map>

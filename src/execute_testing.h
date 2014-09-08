@@ -4,7 +4,11 @@
  *  Created on: Sep 5, 2014
  *      Author: gachiemchiep
  */
-
+/**
+ * @class execute_testing
+ * @brieft simply execute testing, result is printed
+ *         into std::cerr
+ */
 #ifndef EXECUTE_TESTING_H_
 #define EXECUTE_TESTING_H_
 
@@ -32,12 +36,12 @@ public:
 	std::string get_method();
 	void evaluate_result();
 private:
-	std::string m_adult_features_file;
-	std::string m_non_adult_features_file;
-	std::string m_method;
-	cv::Mat m_distance;
-	matrixes m_distances_matrixes;
-	matrixes m_ranks_matrixes;
+	std::string m_adult_features_file; /**< Input adult file_names,features file*/
+	std::string m_non_adult_features_file; /**< Input non_adult file_names,features file*/
+	std::string m_method; /**< Input testing method*/
+	cv::Mat m_distance; /**< Feature distances matrix*/
+	matrixes m_distances_matrixes; /**< Feature distances matrixes (scd, ehd, cd)*/
+	matrixes m_ranks_matrixes; /**< Ranks(base on calculated distances) matrixes(scd, ehd, cd)*/
 
 	std::vector<cv::Mat> m_adult_features, m_non_adult_features;
 	std::vector<cv::Mat> m_test_features, m_learn_features;

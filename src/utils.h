@@ -4,10 +4,16 @@
  *  Created on: Sep 5, 2014
  *      Author: gachiemchiep
  */
-
+/**
+ * @file utils.h \n
+ * Useful template method
+ */
 #ifndef UTILS_H_
 #define UTILS_H_
 
+/**
+ * Print vector values into std::cerr
+ */
 template<typename num_type>
 void display_vector(std::vector<num_type>& vector_contains) {
 	for (int i = 0; i < vector_contains.size(); i++) {
@@ -16,6 +22,9 @@ void display_vector(std::vector<num_type>& vector_contains) {
 	std::cerr << "\n";
 }
 
+/**
+ * @struct pair of number
+ */
 template<typename numeric_type>
 struct nums_pair {
 	int position;
@@ -28,29 +37,45 @@ struct nums_pair {
 //	};
 };
 
+/**
+ * @struct distances(scd, ehd, cd distance)
+ */
 struct features_distances {
 	float scd_distance;
 	float ehd_distance;
 	float cd_distance;
 };
 
+/**
+ * @struct distances_matrixes(scd, ehd, cd distances matrix)
+ */
 struct matrixes {
 	cv::Mat scd_matrix;
 	cv::Mat ehd_matrix;
 	cv::Mat cd_matrix;
 };
 
+/**
+ * Rule for struct ascend sorting
+ */
 template<typename pair>
 bool compare_ascending(const pair& a, const pair& b) {
 	return a.value < b.value;
 }
 
+/**
+ * Rule for struct descend sorting
+ */
 template<typename pair>
 bool compare_descending(const pair& a, const pair& b) {
 	return a.value > b.value;
 }
 
-// Divide all_vector into testing, learning set
+/**
+ * Split vector into 2 part \n
+ * first part has testing_count element \n
+ * second part has the left \n
+ */
 template<typename num_type>
 void split_vector(std::vector<num_type>& all_vector,
 		std::vector<num_type>& testing_vector,
@@ -66,7 +91,9 @@ void split_vector(std::vector<num_type>& all_vector,
 	}
 }
 
-// Join two vectors into 1
+/**
+ * Join 2 vectors into 1 vector
+ */
 template<typename num_type>
 void join_vector(std::vector<num_type>& vector1,
 		std::vector<num_type>& vector2,

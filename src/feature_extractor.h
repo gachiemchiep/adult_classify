@@ -4,6 +4,10 @@
  *  Created on: Aug 27, 2014
  *      Author: gachiemchiep
  */
+/**
+ * @class feature_extractor
+ */
+
 
 #ifndef FEATURE_EXTRACTOR_H_
 #define FEATURE_EXTRACTOR_H_
@@ -26,6 +30,7 @@
  */
 
 /*
+ * TODO : move to utils.h
  * Maximum of vector
  */
 template<typename num_type>
@@ -40,6 +45,7 @@ num_type maximum(std::vector<num_type>& nums) {
 }
 
 /*
+ * TODO move to utils.h
  * Print out vetor
  */
 template<typename num_type>
@@ -51,6 +57,7 @@ void display(std::vector<num_type> const& nums) {
 }
 
 /*
+ * TODO move to utils.h
  * Calculate edge streng
  */
 template<typename num_type>
@@ -84,10 +91,10 @@ public:
 	void save_result(std::string result_file);
 
 private:
-	std::string m_img;
-	cv::Mat m_frame;
-	std::string m_method;
-	cv::Mat m_feature;
+	std::string m_img; /**< Input image location*/
+	cv::Mat m_frame; /**< Input image matrix*/
+	std::string m_method; /**< Input method*/
+	cv::Mat m_feature; /**< Output feature matrix*/
 	bool check_img_path();
 	bool check_method();
 	cv::Mat calculate_scd(cv::Mat &frame);

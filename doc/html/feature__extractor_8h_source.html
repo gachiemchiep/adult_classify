@@ -95,106 +95,108 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  Created on: Aug 27, 2014</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *      Author: gachiemchiep</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef FEATURE_EXTRACTOR_H_</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define FEATURE_EXTRACTOR_H_</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;boost/algorithm/string.hpp&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;boost/filesystem.hpp&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;opencv2/opencv.hpp&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="params_8h.html">params.h</a>&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> * ehd feature descriptor&#39;s filter</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> * vertical, horizontal, 45 degree, 135 degree, non-direction</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> * edges&#39;s threshold</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> * Maximum of vector</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef FEATURE_EXTRACTOR_H_</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define FEATURE_EXTRACTOR_H_</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;boost/algorithm/string.hpp&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;boost/filesystem.hpp&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;opencv2/opencv.hpp&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="params_8h.html">params.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * ehd feature descriptor&#39;s filter</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * vertical, horizontal, 45 degree, 135 degree, non-direction</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> * edges&#39;s threshold</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> num_type&gt;</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="feature__extractor_8h.html#a2a3a94e0bb6be073e48cca829f1f98ad">   32</a></span>&#160;num_type <a class="code" href="feature__extractor_8h.html#a2a3a94e0bb6be073e48cca829f1f98ad">maximum</a>(std::vector&lt;num_type&gt;&amp; nums) {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    num_type max_val = nums[0];</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; nums.size(); i++) {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">if</span> (max_val &lt; nums[i]) {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            max_val = nums[i];</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">return</span> max_val;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> * Print out vetor</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> num_type&gt;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="feature__extractor_8h.html#a0557f74023ba074ed1fffd28ef87ecb8">   46</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="feature__extractor_8h.html#a0557f74023ba074ed1fffd28ef87ecb8">display</a>(std::vector&lt;num_type&gt; <span class="keyword">const</span>&amp; nums) {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; nums.size(); i++) {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        std::cerr &lt;&lt; nums[i] &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::cerr &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"> * Calculate edge streng</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> num_type&gt;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="feature__extractor_8h.html#a0b60cc07b94db22e66010751d8846649">   57</a></span>&#160;num_type <a class="code" href="feature__extractor_8h.html#a0b60cc07b94db22e66010751d8846649">multiply_scalars</a>(std::vector&lt;num_type&gt; <span class="keyword">const</span>&amp; scalar1,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        std::vector&lt;num_type&gt; <span class="keyword">const</span>&amp; scalar2) {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    num_type result = 0;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">if</span> (scalar1.size() != scalar2.size()) {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        std::cerr &lt;&lt; <span class="stringliteral">&quot;Input scalar should be equal \n&quot;</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        std::cerr &lt;&lt; scalar1.size() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; scalar2.size() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; scalar1.size(); i++) {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            result += scalar1[i] * scalar2[i];</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    result = std::abs(result);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="code" href="classfeature__extractor.html">   73</a></span>&#160;<span class="keyword">class </span><a class="code" href="classfeature__extractor.html">feature_extractor</a> {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="classfeature__extractor.html#a2ec27298b92357da7d5e64da54791a4b">feature_extractor</a>();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classfeature__extractor.html#aad03e60b281579ec866561ceb669eb3d">~feature_extractor</a>();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classfeature__extractor.html#a78a5be8ef0509d8a1f865cc787e014f2">set_img_path</a>(std::string img_path);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::string <a class="code" href="classfeature__extractor.html#a3e3a311d1771ff2970bbd5409c069f6b">get_img_path</a>();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classfeature__extractor.html#ad7757385786ff6441a3c769a5b003c87">set_method</a>(std::string method);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::string <a class="code" href="classfeature__extractor.html#ad393736b585a9f93053e73f36bc8d9eb">get_method</a>();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#a51c595afeccdacbac005e9de9d65846e">get_feature</a>();</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classfeature__extractor.html#aed0a54072caef6342fc82be67a350466">is_valid</a>();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classfeature__extractor.html#a55501c10a5a173247498ee59ea9f8bfb">calculate_feature</a>();</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classfeature__extractor.html#ae0bbff86754a4bda8edf4d5bf599d822">save_result</a>(std::string result_file);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="code" href="classfeature__extractor.html#a616df7e8a3c0ade3ff66489aaf25d6a9">   87</a></span>&#160;    std::string <a class="code" href="classfeature__extractor.html#a616df7e8a3c0ade3ff66489aaf25d6a9">m_img</a>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="code" href="classfeature__extractor.html#abbf58e645355673e53826949f7402dda">   88</a></span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#abbf58e645355673e53826949f7402dda">m_frame</a>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="code" href="classfeature__extractor.html#ac8a087a9c56f253bd034ac83050d3e5d">   89</a></span>&#160;    std::string <a class="code" href="classfeature__extractor.html#ac8a087a9c56f253bd034ac83050d3e5d">m_method</a>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="code" href="classfeature__extractor.html#a1a0acab40b530bcf63d59676d0cd0c53">   90</a></span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#a1a0acab40b530bcf63d59676d0cd0c53">m_feature</a>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classfeature__extractor.html#a906c8bac9f4476d412f73fef4677561a">check_img_path</a>();</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classfeature__extractor.html#a700c3730ba649ad37e3cd536183c4922">check_method</a>();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#a07cccf942723452789560ea49391c833">calculate_scd</a>(cv::Mat &amp;frame);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#af050c2cb5ba3ed3541ec3c981b969a5a">calculate_ehd</a>(cv::Mat &amp;frame);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#a2e8bd4efa8557a81910ef8e44bac0452">calculate_cd</a>(cv::Mat &amp;frame);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">// calculate edge streng for block</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    std::vector&lt;float&gt; <a class="code" href="classfeature__extractor.html#af5cc40f772409dbc03fe4b0fc5a0c3db">edges_streng</a>(cv::Mat &amp;frame_gray, cv::Rect block_rect);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">// divide rect into smaller part rect -&gt; y*x smaller rect</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    std::vector&lt;cv::Rect&gt; <a class="code" href="classfeature__extractor.html#a74646c943b032b1625a8f70d7903ece7">split_rect</a>(cv::Rect rect, <span class="keywordtype">int</span> y_parts_count,</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keywordtype">int</span> x_parts_count);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classfeature__extractor.html#a72b821a4c52bfbfc0fc7772629520652">strongest_edge</a>(std::vector&lt;float&gt;&amp; <a class="code" href="classfeature__extractor.html#af5cc40f772409dbc03fe4b0fc5a0c3db">edges_streng</a>, <span class="keywordtype">float</span> threshold);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classfeature__extractor.html#ac580338d56b489b11b5673a52768ab0e">is_skin_pixel</a>(cv::Vec3b bgr);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classfeature__extractor.html#a6a42f1ae8c15595316b6fbe8c7d90855">save_feature</a>(cv::Mat &amp;feature, std::string file_name, std::string result_file);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FEATURE_EXTRACTOR_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> * TODO : move to utils.h</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * Maximum of vector</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> num_type&gt;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="feature__extractor_8h.html#a2a3a94e0bb6be073e48cca829f1f98ad">   37</a></span>&#160;num_type <a class="code" href="feature__extractor_8h.html#a2a3a94e0bb6be073e48cca829f1f98ad">maximum</a>(std::vector&lt;num_type&gt;&amp; nums) {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    num_type max_val = nums[0];</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; nums.size(); i++) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span> (max_val &lt; nums[i]) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            max_val = nums[i];</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">return</span> max_val;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> * TODO move to utils.h</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"> * Print out vetor</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> num_type&gt;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="feature__extractor_8h.html#a0557f74023ba074ed1fffd28ef87ecb8">   52</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="feature__extractor_8h.html#a0557f74023ba074ed1fffd28ef87ecb8">display</a>(std::vector&lt;num_type&gt; <span class="keyword">const</span>&amp; nums) {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; nums.size(); i++) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        std::cerr &lt;&lt; nums[i] &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::cerr &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"> * TODO move to utils.h</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> * Calculate edge streng</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> num_type&gt;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="feature__extractor_8h.html#a0b60cc07b94db22e66010751d8846649">   64</a></span>&#160;num_type <a class="code" href="feature__extractor_8h.html#a0b60cc07b94db22e66010751d8846649">multiply_scalars</a>(std::vector&lt;num_type&gt; <span class="keyword">const</span>&amp; scalar1,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        std::vector&lt;num_type&gt; <span class="keyword">const</span>&amp; scalar2) {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    num_type result = 0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span> (scalar1.size() != scalar2.size()) {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        std::cerr &lt;&lt; <span class="stringliteral">&quot;Input scalar should be equal \n&quot;</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        std::cerr &lt;&lt; scalar1.size() &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; scalar2.size() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; scalar1.size(); i++) {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            result += scalar1[i] * scalar2[i];</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    result = std::abs(result);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="code" href="classfeature__extractor.html">   80</a></span>&#160;<span class="keyword">class </span><a class="code" href="classfeature__extractor.html">feature_extractor</a> {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="classfeature__extractor.html#a2ec27298b92357da7d5e64da54791a4b">feature_extractor</a>();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classfeature__extractor.html#aad03e60b281579ec866561ceb669eb3d">~feature_extractor</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classfeature__extractor.html#a78a5be8ef0509d8a1f865cc787e014f2" title="Set image path for feature extraction.">set_img_path</a>(std::string img_path);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    std::string <a class="code" href="classfeature__extractor.html#a3e3a311d1771ff2970bbd5409c069f6b" title="Get image path for feature extraction.">get_img_path</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classfeature__extractor.html#ad7757385786ff6441a3c769a5b003c87" title="Set method for feature extraction.">set_method</a>(std::string method);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    std::string <a class="code" href="classfeature__extractor.html#ad393736b585a9f93053e73f36bc8d9eb" title="Get method for feature extraction.">get_method</a>();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#a51c595afeccdacbac005e9de9d65846e" title="Get extracted feature.">get_feature</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classfeature__extractor.html#aed0a54072caef6342fc82be67a350466" title="Check whether input method and input image valid.">is_valid</a>();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classfeature__extractor.html#a55501c10a5a173247498ee59ea9f8bfb" title="Calculate feature.">calculate_feature</a>();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classfeature__extractor.html#ae0bbff86754a4bda8edf4d5bf599d822" title="Save extracted feature into result_file as raw txt file Delimiter is &quot;,&quot;.">save_result</a>(std::string result_file);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="code" href="classfeature__extractor.html#a616df7e8a3c0ade3ff66489aaf25d6a9">   94</a></span>&#160;    std::string <a class="code" href="classfeature__extractor.html#a616df7e8a3c0ade3ff66489aaf25d6a9" title="Input image location.">m_img</a>; </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="code" href="classfeature__extractor.html#abbf58e645355673e53826949f7402dda">   95</a></span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#abbf58e645355673e53826949f7402dda" title="Input image matrix.">m_frame</a>; </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="code" href="classfeature__extractor.html#ac8a087a9c56f253bd034ac83050d3e5d">   96</a></span>&#160;    std::string <a class="code" href="classfeature__extractor.html#ac8a087a9c56f253bd034ac83050d3e5d" title="Input method.">m_method</a>; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="code" href="classfeature__extractor.html#a1a0acab40b530bcf63d59676d0cd0c53">   97</a></span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#a1a0acab40b530bcf63d59676d0cd0c53" title="Output feature matrix.">m_feature</a>; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classfeature__extractor.html#a906c8bac9f4476d412f73fef4677561a" title="Check whether input image valid.">check_img_path</a>();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classfeature__extractor.html#a700c3730ba649ad37e3cd536183c4922" title="Check whether input method valid.">check_method</a>();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#a07cccf942723452789560ea49391c833" title="Calculate Scalable color descriptor opencv hsv is [0-179],[0-255],[0-255] for 8bit image Algorithm sc...">calculate_scd</a>(cv::Mat &amp;frame);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#af050c2cb5ba3ed3541ec3c981b969a5a" title="Calculate ehd features descriptor 16x5(local) + 1x5(global) = 85 dimension Algorithm image -&gt; 4x4 sub...">calculate_ehd</a>(cv::Mat &amp;frame);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    cv::Mat <a class="code" href="classfeature__extractor.html#a2e8bd4efa8557a81910ef8e44bac0452" title="Calculate compactness descriptor(CD) algorithm divide image into 1 , 4 , 16 sub_image then count the ...">calculate_cd</a>(cv::Mat &amp;frame);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment">// calculate edge streng for block</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    std::vector&lt;float&gt; <a class="code" href="classfeature__extractor.html#af5cc40f772409dbc03fe4b0fc5a0c3db" title="Calculate edge streng for ehd feature descriptors edge type is ver, hor, dia45, dia135, nond_edge For detail read Dong&#39;s Efficient use of MPEG-7 Edge Histogram descriptor.">edges_streng</a>(cv::Mat &amp;frame_gray, cv::Rect block_rect);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">// divide rect into smaller part rect -&gt; y*x smaller rect</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    std::vector&lt;cv::Rect&gt; <a class="code" href="classfeature__extractor.html#a74646c943b032b1625a8f70d7903ece7" title="Divide input rect into smaller part for x axis : divide into x_part_counts for y axis : divide into y...">split_rect</a>(cv::Rect rect, <span class="keywordtype">int</span> y_parts_count,</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordtype">int</span> x_parts_count);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classfeature__extractor.html#a72b821a4c52bfbfc0fc7772629520652" title="After calculating edges&#39;s strength Find the strongest edge velue.">strongest_edge</a>(std::vector&lt;float&gt;&amp; <a class="code" href="classfeature__extractor.html#af5cc40f772409dbc03fe4b0fc5a0c3db" title="Calculate edge streng for ehd feature descriptors edge type is ver, hor, dia45, dia135, nond_edge For detail read Dong&#39;s Efficient use of MPEG-7 Edge Histogram descriptor.">edges_streng</a>, <span class="keywordtype">float</span> threshold);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classfeature__extractor.html#ac580338d56b489b11b5673a52768ab0e" title="Is input pixel a skin pixel Using simple RGB rule.">is_skin_pixel</a>(cv::Vec3b bgr);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classfeature__extractor.html#a6a42f1ae8c15595316b6fbe8c7d90855" title="Save image_path, extracted feature into result_file as raw txt file For example : image1...">save_feature</a>(cv::Mat &amp;feature, std::string file_name, std::string result_file);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;};</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FEATURE_EXTRACTOR_H_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

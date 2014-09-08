@@ -1,9 +1,9 @@
 <map id="bg_remove::remove_noise" name="bg_remove::remove_noise">
-<area shape="rect" id="node2" href="$classbg__remove.html#acd887517c05fed59446921cf14285ed9" title="bg_remove::find_skin\l_block" alt="" coords="237,23,384,65"/>
-<area shape="rect" id="node5" href="$classbg__remove.html#a051a0770c13d013808d0bd38bb3ad8c2" title="bg_remove::connect\l_skin_block" alt="" coords="241,89,381,130"/>
-<area shape="rect" id="node7" href="$classbg__remove.html#ab8dba2255626f9d664e0cc788421586c" title="bg_remove::find_largest\l_skin_block" alt="" coords="230,154,391,195"/>
-<area shape="rect" id="node8" href="$classbg__remove.html#a5c73254ff3439b397233b3aef9d11be8" title="bg_remove::analyze_roi" alt="" coords="231,220,391,247"/>
-<area shape="rect" id="node3" href="$bg__remove_8h.html#a1b693534cf4c588f77a0b8ae82135863" title="BLOCK_SIZE" alt="" coords="677,5,781,32"/>
-<area shape="rect" id="node4" href="$classbg__remove.html#a58a35c1e8a45db50421d49d3c5924b3f" title="bg_remove::is_skin\l_block" alt="" coords="467,27,602,69"/>
+<area shape="rect" id="node2" href="$classbg__remove.html#acd887517c05fed59446921cf14285ed9" title="Find skin pixel blocks." alt="" coords="237,23,384,65"/>
+<area shape="rect" id="node5" href="$classbg__remove.html#a051a0770c13d013808d0bd38bb3ad8c2" title="After removing non&#45;pixel blocks, connect blocks using close transformation." alt="" coords="241,89,381,130"/>
+<area shape="rect" id="node7" href="$classbg__remove.html#ab8dba2255626f9d664e0cc788421586c" title="Find largest block formed after close transformation The other blocks are consider as noise and remov..." alt="" coords="230,154,391,195"/>
+<area shape="rect" id="node8" href="$classbg__remove.html#a5c73254ff3439b397233b3aef9d11be8" title="Whether ROI(region of interest) sastified image&#39;s size condition Size :(height &gt; 50) &amp;&amp; (width &gt; 50)..." alt="" coords="231,220,391,247"/>
+<area shape="rect" id="node3" href="$bg__remove_8h.html#a1b693534cf4c588f77a0b8ae82135863" title="bg_remove.h Created on: Aug 21, 2014 Author: gachiemchiep Description : Remove non&#45;skin pixels from i..." alt="" coords="677,5,781,32"/>
+<area shape="rect" id="node4" href="$classbg__remove.html#a58a35c1e8a45db50421d49d3c5924b3f" title="Whether skin pixel blocks really a skin block Condition: have more than 25% region of block is skin p..." alt="" coords="467,27,602,69"/>
 <area shape="rect" id="node6" href="$bg__remove_8h.html#afea45fdae62aecd2d989f99acb317e8b" title="MORPH_CLOSE_PARAMS" alt="" coords="441,96,629,123"/>
 </map>
