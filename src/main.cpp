@@ -48,6 +48,7 @@ int main(int argc, char *argv[]) {
 	do_testing_options.add_options()
 	    ("adult_features_file,x",    value<string>(),    "File contains all adult content images's feature vectors")
 	    ("non_adult_features_file,y",    value<string>(),    "File contains all no_adult content images's feature vectors")
+	    ("test_method",    value<string>(),    "Method for testing")
 	;
 
 	// Combine into 1 option
@@ -146,12 +147,14 @@ int main(int argc, char *argv[]) {
 			} else { // Have adult_features_file or non_adult_features_file
 				std::string adult_features_file = parsed_values["adult_features_file"].as<string>();
 				std::string non_adult_features_file = parsed_values["non_adult_features_file"].as<string>();
+				std::string method = parsed_values["test_method"].as<string>();
 				std::cerr << adult_features_file << " " << non_adult_features_file << "\n";
 
 				execute_testing do_test;
 				do_test.set_adult_features_file(adult_features_file);
 				do_test.set_non_adult_features_file(non_adult_features_file);
-				do_test.set_method("ALL");
+//				do_test.set_method("ALL");
+				do_test.set_method(method);
 				std::cerr << do_test.get_adult_features_file() << "\n";
 				std::cerr << do_test.get_non_adult_features_file() << "\n";
 

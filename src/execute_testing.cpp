@@ -307,14 +307,13 @@ cv::Mat execute_testing::rank_from_distances(cv::Mat distances, int max_rank) {
  */
 void execute_testing::print_result() {
 	cv::Mat rank;
-
-	if (m_method == "SCD") {
+	if (m_method == "scd") {
 		std::cerr << "Method is SCD\n";
 		rank = m_ranks_matrixes.scd_matrix;
-	} else if (m_method == "EHD") {
+	} else if (m_method == "ehd") {
 		std::cerr << "Method is EHD\n";
 		rank = m_ranks_matrixes.ehd_matrix;
-	} else if (m_method == "CD") {
+	} else if (m_method == "cd") {
 		std::cerr << "Method is CD\n";
 		rank = m_ranks_matrixes.cd_matrix;
 	} else {
