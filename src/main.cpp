@@ -23,36 +23,42 @@ int main(int argc, char *argv[]) {
 
 	// Init options
 	boost::program_options::options_description main_options("main options");
-	boost::program_options::options_description rm_bg_options("Remove background options");
-	boost::program_options::options_description extract_feature_options("Extract features options");
-	boost::program_options::options_description do_testing_options("Execute testing options");
+	boost::program_options::options_description rm_bg_options(
+			"Remove background options");
+	boost::program_options::options_description extract_feature_options(
+			"Extract features options");
+	boost::program_options::options_description do_testing_options(
+			"Execute testing options");
 
-	main_options.add_options()
-		("help,h",    "Print help message")
-		("rm_bg,r",    "Remove background ")
-		("extract_feature,e",    "Extract feature (scd+ehd+cd)")
-		("execute_testing,t",    "Execute testing")
+	main_options.add_options()("help,h", "Print help message")("rm_bg,r",
+			"Remove background ")("extract_feature,e",
+			"Extract feature (scd+ehd+cd)")("execute_testing,t",
+			"Execute testing");
+
+	rm_bg_options.add_options()("bg_img,b", value<string>(),
+			"Image path which is used for removing background")("rm_method",
+			value<string>()->default_value("all"),
+			"Method for removing background \nAvailable options: RGB; YCrCb; HSV; HLS; RGB_norm; HSI;");
+
+	extract_feature_options.add_options()("img_path,p", value<string>(),
+			"Image path which is used for extracting feature")("feature_type",
+			value<string>()->default_value("all"),
+			"Method for extracting feature.\nCurrently not usable")(
+			"feature_file",
+			value<string>()->default_value("feature.txt",
+					"File in which feature will be appended to"));
 	;
 
-	rm_bg_options.add_options()
-		("bg_img,b",    value<string>(),    "Image path which is used for removing background")
-		("rm_method",    value<string>()->default_value("all"),    "Method for removing background")
-	;
-
-	extract_feature_options.add_options()
-		("img_path,p",    value<string>(),    "Image path which is used for extracting feature")
-		("feature_type",    value<string>()->default_value("all"),    "Method for extracting feature.\nCurrently not usable")
-		("feature_file",    value<string>()->default_value("feature.txt",    "File in which feature will be appended to"));
-	;
-
-	do_testing_options.add_options()
-	    ("adult_features_file,x",    value<string>(),    "File contains all adult content images's feature vectors")
-	    ("non_adult_features_file,y",    value<string>(),    "File contains all no_adult content images's feature vectors")
-	    ("test_method",    value<string>(),    "Method for testing")
-	;
+	do_testing_options.add_options()("adult_features_file,x", value<string>(),
+			"File contains all adult content images's feature vectors")(
+			"non_adult_features_file,y", value<string>(),
+			"File contains all no_adult content images's feature vectors")(
+			"test_method", value<string>(),
+			"Method for testing. \nAvailable options: scd; ehd; cd; all;");
 
 	// Combine into 1 option
-	main_options.add(rm_bg_options).add(extract_feature_options).add(do_testing_options);
+	main_options.add(rm_bg_options).add(extract_feature_options).add(
+			do_testing_options);
 
 	// Store parsed values
 	boost::program_options::variables_map parsed_values;
@@ -60,7 +66,9 @@ int main(int argc, char *argv[]) {
 	// Begin parsing values
 	try {
 		// Parse all parsed to variable map
-		boost::program_options::store(boost::program_options::parse_command_line(argc, argv, main_options), parsed_values);
+		boost::program_options::store(
+				boost::program_options::parse_command_line(argc, argv,
+						main_options), parsed_values);
 
 		// Store into variable map
 		boost::program_options::notify(parsed_values);
@@ -78,7 +86,8 @@ int main(int argc, char *argv[]) {
 			} else { // Have image
 				std::string img_path = parsed_values["bg_img"].as<string>();
 				std::string method = parsed_values["rm_method"].as<string>();
-				std::cerr << "Image contain background:" << img_path << " \nMethod" << method << "\n";
+				std::cerr << "Image contain background:" << img_path
+						<< " \nMethod" << method << "\n";
 
 				std::vector<bg_remove*> bg_removes;
 				bg_removes.push_back(new rgb());
@@ -88,12 +97,14 @@ int main(int argc, char *argv[]) {
 				bg_removes.push_back(new rgb_norm());
 				bg_removes.push_back(new hsi());
 
-				std::vector<std::string>::iterator methods_it ;
-				methods_it = std::find(RM_BG_METHODS.begin(), RM_BG_METHODS.end(), method);
+				std::vector<std::string>::iterator methods_it;
+				methods_it = std::find(RM_BG_METHODS.begin(),
+						RM_BG_METHODS.end(), method);
 				if (methods_it == RM_BG_METHODS.end()) { // method name is not found, use all available method
-					std::cerr << "Input method is not valid. Remove background using all available methods \n";
-					for (std::vector<bg_remove*>::iterator bg = bg_removes.begin();
-									bg != bg_removes.end(); ++bg) {
+					std::cerr
+							<< "Input method is not valid. Remove background using all available methods \n";
+					for (std::vector<bg_remove*>::iterator bg =
+							bg_removes.begin(); bg != bg_removes.end(); ++bg) {
 						(*bg)->set_img(img_path);
 						(*bg)->init();
 						(*bg)->run();
@@ -102,7 +113,8 @@ int main(int argc, char *argv[]) {
 					}
 				} else { // method name is found, point to corresponding method and run
 					int method_count = methods_it - RM_BG_METHODS.begin();
-					std::vector<bg_remove*>::iterator bg_it = bg_removes.begin() + method_count;
+					std::vector<bg_remove*>::iterator bg_it = bg_removes.begin()
+							+ method_count;
 					(*bg_it)->set_img(img_path);
 					(*bg_it)->init();
 					(*bg_it)->run();
@@ -120,14 +132,17 @@ int main(int argc, char *argv[]) {
 				std::cerr << main_options << "\n";
 			} else { // Have image
 				std::string img_path = parsed_values["img_path"].as<string>();
-				std::string feature_type = parsed_values["feature_type"].as<string>();
-				std::string feature_file = parsed_values["feature_file"].as<string>();
-				std::cerr <<"Image:" << img_path << " \nFeature type:" << feature_type <<
-						" \nFeature_file:" << feature_file <<"\n";
+				std::string feature_type = parsed_values["feature_type"].as<
+						string>();
+				std::string feature_file = parsed_values["feature_file"].as<
+						string>();
+				std::cerr << "Image:" << img_path << " \nFeature type:"
+						<< feature_type << " \nFeature_file:" << feature_file
+						<< "\n";
 
 				//TODO now use only ALL as default
 
-				feature_extractor fe ;
+				feature_extractor fe;
 				fe.set_img_path(img_path);
 				fe.set_method("ALL");
 				fe.calculate_feature();
@@ -141,14 +156,16 @@ int main(int argc, char *argv[]) {
 		if (parsed_values.count("execute_testing")) {
 			// Dont have adult_features_file or non_adult_features_file
 			if ((!parsed_values.count("adult_features_file"))
-			   || (!parsed_values.count("non_adult_features_file"))
-			) {
+					|| (!parsed_values.count("non_adult_features_file"))) {
 				std::cerr << main_options << "\n";
 			} else { // Have adult_features_file or non_adult_features_file
-				std::string adult_features_file = parsed_values["adult_features_file"].as<string>();
-				std::string non_adult_features_file = parsed_values["non_adult_features_file"].as<string>();
+				std::string adult_features_file =
+						parsed_values["adult_features_file"].as<string>();
+				std::string non_adult_features_file =
+						parsed_values["non_adult_features_file"].as<string>();
 				std::string method = parsed_values["test_method"].as<string>();
-				std::cerr << adult_features_file << " " << non_adult_features_file << "\n";
+				std::cerr << adult_features_file << " "
+						<< non_adult_features_file << "\n";
 
 				execute_testing do_test;
 				do_test.set_adult_features_file(adult_features_file);
@@ -163,7 +180,6 @@ int main(int argc, char *argv[]) {
 			std::cerr << "Testing finish!!! \n";
 			return 1;
 		}
-
 
 	} catch (std::exception &error) {
 		std::cerr << error.what() << "\n";
